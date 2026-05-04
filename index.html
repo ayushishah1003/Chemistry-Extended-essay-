@@ -320,8 +320,7 @@ table.students tbody tr:hover td { background: var(--cream); }
 
 <script>
 // ── CONFIG ──
-// IMPORTANT: Replace this with your actual deployed Apps Script Web App URL
-var SCRIPT_URL = 'https://script.google.com/a/macros/fountainheadschools.org/s/AKfycby68TJnkweVeQ5vMR2JWNu7oic6dghbBLGKPBtEXaLDTInU7k-jzGmHn05LW7GCPCLy/exec';
+var SCRIPT_URL = 'https://script.google.com/a/macros/fountainheadschools.org/s/AKfycbx_murtjGnU_WsB2GBeFbwlftRpPhgoQOmo9yuM3wQOqqhKMOmB6sNSA-qzBn_ogXB8/exec';
 
 var CRIT_COLORS = {
   A: { color:'var(--green)',  light:'var(--green-light)',  badge:'#1D6B4A' },
@@ -340,24 +339,26 @@ var TAG_STYLE = {
 };
 
 // ── CHECKLIST DATA ──
+// NOTE: All string literals use straight apostrophes only.
+//       Curly/smart quotes (\u2018 \u2019) in JS string literals cause SyntaxError.
 var CRITERIA = [
   { id:'A', title:'Framework for the essay', sections:[
     { name:'Research question', items:[
       { t:'Research question clearly names both the independent variable (what you change) and the dependent variable (what you measure).', tag:'writing' },
-      { t:'Research question is not a yes/no question - it invites a quantified, nuanced answer.', tag:'common mistake', tip:'Avoid "Does X affect Y?" - instead write "How does X affect Y measured by Z?"' },
-      { t:'Research question does not begin with "To what extent..." - this leads to vague, unfocused essays.', tag:'common mistake' },
-      { t:'Research question specifies the range of the investigation (e.g. pH 4-8, concentrations 0.1-0.5 mol/dm³).', tag:'tip' },
-      { t:'Research question is achievable at school level - not too ambitious, not trivial.', tag:'tip' },
+      { t:'Research question is not a yes/no question — it invites a quantified, nuanced answer.', tag:'common mistake', tip:'Avoid "Does X affect Y?" — instead write "How does X affect Y measured by Z?"' },
+      { t:'Research question does not begin with "To what extent..." — this leads to vague, unfocused essays.', tag:'common mistake' },
+      { t:'Research question specifies the range of the investigation (e.g. pH 4-8, concentrations 0.1-0.5 mol/dm\u00b3).', tag:'tip' },
+      { t:'Research question is achievable at school level — not too ambitious, not trivial.', tag:'tip' },
       { t:'Research question involves a genuine chemical issue: a reaction, equilibrium, or measurable chemical property.', tag:'writing' },
     ]},
     { name:'Structure and conventions', items:[
-      { t:'Title and RQ are distinct - title is broad, RQ is precise with variables named.', tag:'writing' },
+      { t:'Title and RQ are distinct — title is broad, RQ is precise with variables named.', tag:'writing' },
       { t:'Rationale for the chosen approach (practical, database, literature) is clearly stated in the introduction.', tag:'writing' },
-      { t:'Chemical formulas use correct subscripts throughout - H₂SO₄ not H2SO4.', tag:'common mistake', tip:'Use Unicode subscripts or proper formatting - examiners penalise inconsistent notation.' },
+      { t:'Chemical formulas use correct subscripts throughout — H\u2082SO\u2084 not H2SO4.', tag:'common mistake', tip:'Use Unicode subscripts or proper formatting — examiners penalise inconsistent notation.' },
       { t:'IUPAC names are used wherever possible instead of trivial names.', tag:'tip' },
-      { t:'Technical vocabulary is consistent throughout - same term not referred to by different names.', tag:'writing' },
+      { t:'Technical vocabulary is consistent throughout — same term not referred to by different names.', tag:'writing' },
       { t:'All figures, tables, and images are numbered, titled, and captioned.', tag:'common mistake' },
-      { t:'All graphs have labelled axes with units.', tag:'common mistake', tip:'An unlabelled axis is meaningless to an examiner - very common and easily avoidable.' },
+      { t:'All graphs have labelled axes with units.', tag:'common mistake', tip:'An unlabelled axis is meaningless to an examiner — very common and easily avoidable.' },
       { t:'Appendices contain: risk assessment, safety data, equipment lists, raw data, sample calculations.', tag:'writing' },
       { t:'Word count is within 4,000 words; appendices are not counted.', tag:'writing' },
     ]},
@@ -370,33 +371,33 @@ var CRITERIA = [
   ]},
   { id:'B', title:'Knowledge and understanding', sections:[
     { name:'Chemical theory', items:[
-      { t:'Background covers theory directly relevant to the RQ - not generic chemistry revision.', tag:'common mistake', tip:'Do not explain what the pH scale is if your essay is about pH. Assume the reader has IB-level knowledge.' },
+      { t:'Background covers theory directly relevant to the RQ — not generic chemistry revision.', tag:'common mistake', tip:'Do not explain what the pH scale is if your essay is about pH. Assume the reader has IB-level knowledge.' },
       { t:'Underlying chemical principles are explained: mechanisms, equilibria, kinetics, thermodynamics, etc.', tag:'writing' },
-      { t:'The theoretical framework is connected back to the RQ - clear why this background is relevant.', tag:'writing' },
+      { t:'The theoretical framework is connected back to the RQ — clear why this background is relevant.', tag:'writing' },
       { t:"Relevant laws or equations (Beer-Lambert, Raoult's law, VSEPR etc.) are cited and explained correctly.", tag:'writing' },
-      { t:'Sources are peer-reviewed journals, reputable databases, or textbooks - not Wikipedia.', tag:'common mistake', tip:'Wikipedia is fine for orientation but must never be cited in the essay itself.' },
+      { t:'Sources are peer-reviewed journals, reputable databases, or textbooks — not Wikipedia.', tag:'common mistake', tip:'Wikipedia is fine for orientation but must never be cited in the essay itself.' },
     ]},
     { name:'Chemical language and notation', items:[
-      { t:'"Atom", "molecule", "ion", and "compound" are never used interchangeably - each used precisely.', tag:'common mistake', tip:'Using "atoms" when you mean "ions" is one of the most penalised errors in Chemistry EEs.' },
+      { t:'"Atom", "molecule", "ion", and "compound" are never used interchangeably — each used precisely.', tag:'common mistake', tip:'Using "atoms" when you mean "ions" is one of the most penalised errors in Chemistry EEs.' },
       { t:'All balanced equations include correct state symbols: (s), (l), (g), (aq).', tag:'common mistake' },
       { t:'Reaction mechanisms are shown where applicable.', tag:'tip' },
-      { t:'SI units are used throughout: mol/dm³ not M, J not cal, nm not Å.', tag:'writing' },
+      { t:'SI units are used throughout: mol/dm\u00b3 not M, J not cal, nm not \u00c5.', tag:'writing' },
       { t:'Significant figures are consistent with the precision of measuring instruments used.', tag:'common mistake' },
       { t:'Decimal places are consistent within each data column.', tag:'writing' },
-      { t:'Uncertainty values are quoted correctly: ±0.05 cm³ not just ±0.05.', tag:'tip' },
+      { t:'Uncertainty values are quoted correctly: \u00b10.05 cm\u00b3 not just \u00b10.05.', tag:'tip' },
     ]},
     { name:'Understanding sources', items:[
-      { t:"Findings from literature or databases are explained and interpreted - not just reproduced.", tag:'common mistake', tip:"If you can't explain in your own words why a value is what it is, you haven't understood the source." },
+      { t:"Findings from literature or databases are explained and interpreted — not just reproduced.", tag:'common mistake', tip:"If you can't explain in your own words why a value is what it is, you haven't understood the source." },
       { t:'If using databases: values from different sources are compared and discrepancies discussed.', tag:'database' },
       { t:'If practical: the chemistry behind the technique is explained (e.g. why spectrophotometry works here).', tag:'practical' },
-      { t:'Computer models or simulations are understood - not used as black boxes.', tag:'tip' },
+      { t:'Computer models or simulations are understood — not used as black boxes.', tag:'tip' },
     ]},
   ]},
   { id:'C', title:'Analysis and line of argument', sections:[
     { name:'Data presentation', items:[
       { t:'All raw data tables have a title, column headers, SI units, and uncertainties where applicable.', tag:'common mistake' },
       { t:'Processed data tables are separate from raw data and clearly labelled.', tag:'writing' },
-      { t:'Mean values are calculated and an example calculation is shown in the body or appendix.', tag:'common mistake', tip:'Show one worked example of every type of calculation - the examiner must see you understand the process.' },
+      { t:'Mean values are calculated and an example calculation is shown in the body or appendix.', tag:'common mistake', tip:'Show one worked example of every type of calculation — the examiner must see you understand the process.' },
       { t:'Percentage and absolute uncertainties are calculated and propagated correctly.', tag:'tip' },
       { t:'Large raw data sets go in the appendix; a summary table appears in the body.', tag:'writing' },
     ]},
@@ -404,7 +405,7 @@ var CRITERIA = [
       { t:'Correct graph type chosen: Cartesian for continuous variables, bar chart for categorical/discrete data.', tag:'common mistake', tip:'Drawing a best-fit line on a bar chart or on a graph where x-axis shows experiment numbers is a major error.' },
       { t:'Error bars are included on graphs where uncertainties apply.', tag:'tip' },
       { t:"Trend line is appropriate for the chemical phenomenon being investigated.", tag:'common mistake', tip:"Don't force a linear trend on data that should follow an exponential or logarithmic curve." },
-      { t:'Trend line is actively interpreted - slope, intercept, or curvature is explained chemically.', tag:'writing' },
+      { t:'Trend line is actively interpreted — slope, intercept, or curvature is explained chemically.', tag:'writing' },
       { t:'Graphs are analysed, not just described ("the linear relationship suggests... because...").', tag:'common mistake' },
     ]},
     { name:'Argument and reasoning', items:[
@@ -418,21 +419,21 @@ var CRITERIA = [
   { id:'D', title:'Discussion and evaluation', sections:[
     { name:'Discussion of results', items:[
       { t:'Results compared to theoretical or literature values; percentage error calculated.', tag:'common mistake', tip:'Always state the expected/literature value alongside your experimental value and calculate % error.' },
-      { t:'Explanations for trends go beyond description - the underlying chemistry is invoked.', tag:'writing' },
-      { t:'Unexpected or contradictory results are discussed honestly - not ignored.', tag:'common mistake' },
+      { t:'Explanations for trends go beyond description — the underlying chemistry is invoked.', tag:'writing' },
+      { t:'Unexpected or contradictory results are discussed honestly — not ignored.', tag:'common mistake' },
       { t:'Potential biases in the investigation are acknowledged.', tag:'tip' },
       { t:'Practical implications or real-world relevance of findings are discussed briefly.', tag:'writing' },
     ]},
     { name:'Evaluation of methodology', items:[
       { t:'Errors categorised: systematic (directional, consistent) vs. random (scatter).', tag:'common mistake', tip:'Systematic errors shift all values in one direction; random errors scatter data around the mean.' },
-      { t:'For each significant error: source, likely magnitude, and directional impact are discussed.', tag:'common mistake', tip:'"Human error" is not acceptable - identify the specific procedural cause.' },
-      { t:'Evaluation focuses on the most impactful errors - not an exhaustive list of minor issues.', tag:'tip' },
+      { t:'For each significant error: source, likely magnitude, and directional impact are discussed.', tag:'common mistake', tip:'"Human error" is not acceptable — identify the specific procedural cause.' },
+      { t:'Evaluation focuses on the most impactful errors — not an exhaustive list of minor issues.', tag:'tip' },
       { t:'Quality and reliability of sources (for database essays) are critically assessed.', tag:'database' },
       { t:'Alternative methods or instruments are discussed, with reasons they would reduce error.', tag:'writing' },
     ]},
     { name:'Conclusion', items:[
       { t:'Conclusion directly and explicitly answers the research question.', tag:'common mistake', tip:'Re-read your RQ before writing the conclusion. Every sentence should connect to it.' },
-      { t:'Conclusion is supported by evidence in the essay - not by assertions or new claims.', tag:'writing' },
+      { t:'Conclusion is supported by evidence in the essay — not by assertions or new claims.', tag:'writing' },
       { t:'Degree of certainty reflects the quality of the data (strong/weak evidence acknowledged).', tag:'tip' },
       { t:'Suggestions for further research arise from specific observations made during the investigation.', tag:'common mistake', tip:'"Further research could be done on..." is weak. Reference a specific anomaly or limitation you observed.' },
       { t:'Further research suggestions are specific: what variable, method, and question would be investigated.', tag:'writing' },
@@ -442,7 +443,7 @@ var CRITERIA = [
     { name:'RPPF reflections', items:[
       { t:'Three formal Reflections on Planning and Progress (RPPF) completed: initial, interim, and final.', tag:'writing' },
       { t:"Each reflection is under 500 words and written in the student's own voice.", tag:'writing' },
-      { t:'Reflections show genuine intellectual engagement - not just a log of tasks completed.', tag:'common mistake', tip:'Examiners distinguish between "I did X then Y" and genuine reflection on why something surprised or changed your thinking.' },
+      { t:'Reflections show genuine intellectual engagement — not just a log of tasks completed.', tag:'common mistake', tip:'Examiners distinguish between "I did X then Y" and genuine reflection on why something surprised or changed your thinking.' },
     ]},
     { name:'Initial reflection', items:[
       { t:'Explains why this topic and research question were chosen personally.', tag:'writing' },
@@ -452,14 +453,14 @@ var CRITERIA = [
     { name:'Interim reflection', items:[
       { t:'Discusses how the investigation evolved from the original plan.', tag:'writing' },
       { t:'Any pivots in methodology, RQ, or approach are explained and justified.', tag:'tip' },
-      { t:'Challenges encountered are discussed with honesty - not glossed over.', tag:'common mistake', tip:'Describing a problem and how you adapted is far more impressive than pretending everything went smoothly.' },
+      { t:'Challenges encountered are discussed with honesty — not glossed over.', tag:'common mistake', tip:'Describing a problem and how you adapted is far more impressive than pretending everything went smoothly.' },
       { t:'Shows developing understanding of chemistry, not just project management.', tag:'writing' },
     ]},
     { name:'Final reflection', items:[
-      { t:'Evaluates what was learned - about chemistry, research, and academic work.', tag:'writing' },
+      { t:'Evaluates what was learned — about chemistry, research, and academic work.', tag:'writing' },
       { t:'Connects the investigation to wider ideas in chemistry or science.', tag:'tip' },
       { t:'Addresses specifically what the student would do differently.', tag:'writing' },
-      { t:'Does not simply summarise the essay - reflects on the process of creating it.', tag:'common mistake' },
+      { t:'Does not simply summarise the essay — reflects on the process of creating it.', tag:'common mistake' },
     ]},
     { name:'Viva voce preparation', items:[
       { t:'Can explain the research question and methodology clearly in 2 minutes without notes.', tag:'tip' },
@@ -528,8 +529,9 @@ async function startStudent() {
     }
   } catch(e) { /* first time user */ }
   document.getElementById('btn-student-go').disabled = false;
-  document.getElementById('student-title').textContent = name + '’s checklist';
-  document.getElementById('student-subtitle').textContent = 'IB Chemistry Extended Essay · All Criteria';
+  // Use textContent so no HTML-injection risk; \u2019 = right single quotation mark
+  document.getElementById('student-title').textContent = name + '\u2019s checklist';
+  document.getElementById('student-subtitle').textContent = 'IB Chemistry Extended Essay \u00b7 All Criteria';
   setNav(name, 'student');
   showScreen('screen-student');
   renderChecklist();
@@ -560,8 +562,8 @@ async function openStudentChecklist() {
       Object.keys(saved).forEach(function(k) { if (k in state) state[k] = !!saved[k]; });
     }
   } catch(e) {}
-  document.getElementById('student-title').textContent = name + '’s checklist';
-  document.getElementById('student-subtitle').textContent = 'Reviewed by ' + teacherName + ' · Teacher view';
+  document.getElementById('student-title').textContent = name + '\u2019s checklist';
+  document.getElementById('student-subtitle').textContent = 'Reviewed by ' + teacherName + ' \u00b7 Teacher view';
   document.getElementById('input-reviewer').value = teacherName;
   showScreen('screen-student');
   renderChecklist();
@@ -599,6 +601,7 @@ function renderDashboard(students) {
   var sorted = students.slice().sort(function(a,b){ return (parseInt(b.pct)||0)-(parseInt(a.pct)||0); });
   var CRIT_IDS = ['A','B','C','D','E'];
 
+  // Use data attributes instead of inline onclick to avoid quote-escaping bugs
   var rowsHtml = sorted.map(function(s) {
     var pct = parseInt(s.pct)||0;
     var pctColor = pct>=75 ? 'var(--green)' : pct>=40 ? 'var(--amber)' : 'var(--red)';
@@ -609,7 +612,7 @@ function renderDashboard(students) {
     return '<tr class="student-row" data-student="'+escAttr(s.name)+'">'+
       '<td style="font-weight:600">'+escHtml(s.name)+'</td>'+
       '<td><div class="pct-display">'+
-        '<span style="font-family:'DM Mono',monospace;font-size:13px;font-weight:500;color:'+pctColor+'">'+escHtml(s.pct||'0%')+'</span>'+
+        '<span style="font-family:\'DM Mono\',monospace;font-size:13px;font-weight:500;color:'+pctColor+'">'+escHtml(s.pct||'0%')+'</span>'+
         '<div class="mini-progress"><div class="mini-progress-fill" style="width:'+pct+'%;background:'+pctColor+'"></div></div>'+
       '</div></td>'+
       crits+
@@ -626,7 +629,7 @@ function renderDashboard(students) {
     '<th>Last saved</th><th>Reviewer</th><th></th>'+
     '</tr></thead><tbody>'+rowsHtml+'</tbody></table></div>';
 
-  // Attach events after render using data attributes
+  // Attach events after render using data attributes — no inline onclick needed
   document.querySelectorAll('#dash-table .student-row').forEach(function(row) {
     row.addEventListener('click', function(e) {
       var name = row.getAttribute('data-student');
@@ -717,6 +720,7 @@ function renderChecklist() {
           var ts = TAG_STYLE[item.tag] || {};
           var tagHtml = item.tag ? '<span class="tag" style="background:'+ts.bg+';color:'+ts.color+'">'+escHtml(item.tag)+'</span>' : '';
           var tipHtml = item.tip ? '<div class="tip-text">'+escHtml(item.tip)+'</div>' : '';
+          // Use data-key attribute for click — no inline onclick with embedded keys
           itemsHtml +=
             '<div class="check-item" data-key="'+escAttr(key)+'">' +
               '<div class="checkbox'+(checked?' checked':'')+'">'+
@@ -735,6 +739,7 @@ function renderChecklist() {
       });
     }
 
+    // Use data-crit attribute for toggleBlock click — no inline onclick
     return '<div class="crit-block">'+
       '<div class="crit-header" data-crit="'+escAttr(c.id)+'">'+
         '<span class="crit-badge" style="background:'+col.light+';color:'+col.badge+'">Criterion '+c.id+'</span>'+
@@ -770,7 +775,7 @@ async function doSave() {
     await api({ action:'save', student:studentName, data:JSON.stringify(state), reviewer:reviewer });
     isDirty = false;
     document.getElementById('save-dot').className = 'save-dot saved';
-    document.getElementById('save-label').textContent = 'Saved ✓';
+    document.getElementById('save-label').textContent = 'Saved \u2713';
     setTimeout(function(){ document.getElementById('save-label').textContent = 'All saved'; }, 3000);
   } catch(e) {
     document.getElementById('save-dot').className = 'save-dot unsaved';
