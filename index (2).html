@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IB Chemistry EE Checklist — Fountainhead Schools</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #F7F4EF;
+  --paper: #FDFCFA;
+  --ink: #1A1814;
+  --ink-mid: #4A4640;
+  --ink-light: #9A948C;
+  --ink-faint: #E8E4DC;
+  --green: #1D6B4A;
+  --green-light: #EBF4EF;
+  --green-mid: #2E8A5E;
+  --blue: #1A4A7A;
+  --blue-light: #EBF0F7;
+  --purple: #4A3580;
+  --purple-light: #F0EDF8;
+  --amber: #8A5A0A;
+  --amber-light: #FDF3E3;
+  --rose: #8A2A4A;
+  --rose-light: #F9EDF2;
+  --red-light: #FDEDED;
+  --red: #B53030;
+  --shadow: 0 2px 12px rgba(26,24,20,0.08);
+  --shadow-lg: 0 8px 32px rgba(26,24,20,0.12);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --radius-pill: 99px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--ink); min-height: 100vh; font-size: 15px; line-height: 1.6; }
+.app-shell { min-height: 100vh; display: flex; flex-direction: column; }
+.topnav { background: var(--paper); border-bottom: 1px solid var(--ink-faint); padding: 0 2rem; height: 58px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+.nav-brand { display: flex; align-items: center; gap: 10px; }
+.nav-dot { width: 28px; height: 28px; background: var(--green); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+.nav-dot svg { width: 16px; height: 16px; }
+.nav-title { font-family: 'DM Serif Display', serif; font-size: 17px; color: var(--ink); letter-spacing: -0.2px; }
+.nav-subtitle { font-size: 12px; color: var(--ink-light); font-weight: 400; }
+.nav-right { display: flex; align-items: center; gap: 10px; }
+.nav-user { font-size: 13px; color: var(--ink-mid); display: flex; align-items: center; gap: 6px; }
+.avatar { width: 28px; height: 28px; border-radius: 50%; background: var(--green-light); color: var(--green); font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+.btn-ghost { background: none; border: 1px solid var(--ink-faint); border-radius: var(--radius-sm); padding: 5px 12px; font-size: 13px; color: var(--ink-mid); cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.15s; }
+.btn-ghost:hover { background: var(--cream); border-color: var(--ink-light); }
+.main { flex: 1; max-width: 900px; margin: 0 auto; width: 100%; padding: 2rem 1.5rem 4rem; }
+.screen { display: none; }
+.screen.active { display: block; }
+.landing-hero { text-align: center; padding: 3rem 0 2.5rem; }
+.landing-eyebrow { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--green); text-transform: uppercase; margin-bottom: 16px; display: block; }
+.landing-title { font-family: 'DM Serif Display', serif; font-size: 42px; line-height: 1.1; color: var(--ink); letter-spacing: -1px; margin-bottom: 12px; }
+.landing-title em { font-style: italic; color: var(--green); }
+.landing-sub { font-size: 16px; color: var(--ink-mid); max-width: 420px; margin: 0 auto 2.5rem; }
+.role-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 560px; margin: 0 auto 2rem; }
+.role-card { background: var(--paper); border: 1.5px solid var(--ink-faint); border-radius: var(--radius); padding: 1.5rem; cursor: pointer; transition: all 0.2s; text-align: left; }
+.role-card:hover { border-color: var(--green); box-shadow: var(--shadow); transform: translateY(-2px); }
+.role-card.selected { border-color: var(--green); background: var(--green-light); box-shadow: 0 0 0 3px rgba(29,107,74,0.12); }
+.role-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; }
+.role-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.role-card p { font-size: 13px; color: var(--ink-mid); line-height: 1.45; }
+.form-panel { background: var(--paper); border: 1px solid var(--ink-faint); border-radius: var(--radius); padding: 1.5rem; max-width: 560px; margin: 0 auto; display: none; animation: fadeUp 0.2s ease; }
+@keyframes fadeUp { from { opacity:0; transform: translateY(8px); } to { opacity:1; transform: translateY(0); } }
+.form-label { font-size: 12px; font-weight: 600; color: var(--ink-mid); letter-spacing: 0.04em; text-transform: uppercase; display: block; margin-bottom: 6px; }
+.form-input { width: 100%; padding: 10px 14px; border: 1.5px solid var(--ink-faint); border-radius: var(--radius-sm); font-size: 15px; font-family: 'DM Sans', sans-serif; color: var(--ink); background: var(--cream); transition: border-color 0.15s; outline: none; }
+.form-input:focus { border-color: var(--green); background: white; }
+.btn-primary { width: 100%; padding: 12px; background: var(--green); color: white; border: none; border-radius: var(--radius-sm); font-size: 15px; font-weight: 600; font-family: 'DM Sans', sans-serif; cursor: pointer; margin-top: 12px; transition: all 0.15s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.btn-primary:hover { background: var(--green-mid); transform: translateY(-1px); box-shadow: var(--shadow); }
+.btn-primary:active { transform: translateY(0); }
+.btn-primary:disabled { background: var(--ink-faint); color: var(--ink-light); cursor: not-allowed; transform: none; box-shadow: none; }
+.toast { padding: 10px 14px; border-radius: var(--radius-sm); font-size: 13px; margin-top: 10px; display: none; }
+.toast.show { display: block; }
+.toast.info { background: var(--green-light); color: var(--green); }
+.toast.err { background: var(--red-light); color: var(--red); }
+.toast.warn { background: var(--amber-light); color: var(--amber); }
+.page-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1.5rem; gap: 1rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--ink-faint); }
+.page-header-left h2 { font-family: 'DM Serif Display', serif; font-size: 26px; letter-spacing: -0.5px; line-height: 1.2; }
+.page-header-left p { font-size: 13px; color: var(--ink-light); margin-top: 3px; }
+.header-actions { display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
+.save-indicator { font-size: 12px; color: var(--ink-light); display: flex; align-items: center; gap: 5px; }
+.save-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ink-faint); transition: background 0.3s; }
+.save-dot.unsaved { background: var(--amber); }
+.save-dot.saved { background: var(--green); }
+.btn-save { padding: 8px 18px; background: var(--green); color: white; border: none; border-radius: var(--radius-sm); font-size: 13px; font-weight: 600; font-family: 'DM Sans', sans-serif; cursor: pointer; transition: all 0.15s; white-space: nowrap; }
+.btn-save:hover { background: var(--green-mid); }
+.btn-save:disabled { background: var(--ink-faint); color: var(--ink-light); cursor: not-allowed; }
+.stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 1.25rem; }
+.stat-card { background: var(--paper); border: 1px solid var(--ink-faint); border-radius: var(--radius-sm); padding: 12px 16px; }
+.stat-label { font-size: 11px; color: var(--ink-light); font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+.stat-value { font-size: 24px; font-weight: 600; color: var(--ink); line-height: 1; font-family: 'DM Mono', monospace; }
+.stat-value.green { color: var(--green); }
+.progress-track { height: 5px; background: var(--ink-faint); border-radius: 99px; overflow: hidden; margin-bottom: 1.5rem; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--green), var(--green-mid)); border-radius: 99px; transition: width 0.4s ease; }
+.crit-pills { display: flex; gap: 8px; margin-bottom: 1.25rem; flex-wrap: wrap; }
+.crit-pill-btn { padding: 5px 14px; border-radius: var(--radius-pill); font-size: 12px; font-weight: 500; cursor: pointer; border: 1.5px solid var(--ink-faint); font-family: 'DM Sans', sans-serif; transition: all 0.15s; background: var(--paper); color: var(--ink-mid); }
+.crit-pill-btn.active { border-color: currentColor; }
+.crit-pill-btn[data-c="all"].active { background: var(--ink); color: white; border-color: var(--ink); }
+.reviewer-bar { background: var(--paper); border: 1px solid var(--ink-faint); border-radius: var(--radius-sm); padding: 10px 16px; display: flex; align-items: center; gap: 12px; margin-bottom: 1.25rem; }
+.reviewer-bar label { font-size: 12px; color: var(--ink-light); white-space: nowrap; font-weight: 500; }
+.reviewer-bar input { flex: 1; border: none; background: none; font-size: 13px; color: var(--ink); font-family: 'DM Sans', sans-serif; outline: none; }
+.reviewer-bar input::placeholder { color: var(--ink-faint); }
+.crit-block { background: var(--paper); border: 1px solid var(--ink-faint); border-radius: var(--radius); margin-bottom: 10px; overflow: hidden; transition: box-shadow 0.2s; }
+.crit-block:hover { box-shadow: var(--shadow); }
+.crit-header { display: flex; align-items: center; gap: 12px; padding: 14px 18px; cursor: pointer; user-select: none; transition: background 0.15s; }
+.crit-header:hover { background: var(--cream); }
+.crit-badge { font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: var(--radius-pill); font-family: 'DM Mono', monospace; letter-spacing: 0.05em; flex-shrink: 0; }
+.crit-name { flex: 1; font-size: 14px; font-weight: 600; color: var(--ink); }
+.crit-counter { font-size: 12px; color: var(--ink-light); font-family: 'DM Mono', monospace; flex-shrink: 0; }
+.crit-mini-bar { height: 3px; background: var(--cream); }
+.crit-mini-fill { height: 100%; transition: width 0.4s; }
+.crit-chevron { transition: transform 0.2s; flex-shrink: 0; color: var(--ink-light); }
+.crit-chevron.open { transform: rotate(90deg); }
+.section-label { font-size: 10px; font-weight: 600; color: var(--ink-light); text-transform: uppercase; letter-spacing: 0.1em; padding: 12px 18px 4px; font-family: 'DM Mono', monospace; }
+.check-item { display: flex; align-items: flex-start; gap: 12px; padding: 9px 18px; cursor: pointer; transition: background 0.1s; border-top: 1px solid var(--ink-faint); }
+.check-item:hover { background: var(--cream); }
+.checkbox { width: 18px; height: 18px; border: 1.5px solid #C8C4BC; border-radius: 5px; flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center; transition: all 0.15s; background: white; }
+.checkbox.checked { background: var(--green); border-color: var(--green); }
+.checkbox svg { display: none; }
+.checkbox.checked svg { display: block; }
+.item-content { flex: 1; min-width: 0; }
+.item-text { font-size: 13px; color: var(--ink); line-height: 1.5; }
+.item-text.checked { color: var(--ink-light); text-decoration: line-through; }
+.item-meta { display: flex; align-items: center; gap: 6px; margin-top: 4px; flex-wrap: wrap; }
+.tag { font-size: 10px; padding: 2px 7px; border-radius: var(--radius-pill); font-weight: 500; font-family: 'DM Mono', monospace; }
+.tip-text { font-size: 12px; color: var(--ink-mid); margin-top: 5px; padding: 6px 10px; background: var(--cream); border-left: 2px solid var(--ink-faint); border-radius: 0 4px 4px 0; line-height: 1.45; }
+.dash-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 1.5rem; }
+.table-wrap { background: var(--paper); border: 1px solid var(--ink-faint); border-radius: var(--radius); overflow: hidden; margin-bottom: 1.5rem; }
+.table-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; border-bottom: 1px solid var(--ink-faint); }
+.table-title { font-size: 14px; font-weight: 600; }
+.btn-refresh { padding: 6px 12px; border: 1px solid var(--ink-faint); border-radius: var(--radius-sm); background: none; font-size: 12px; cursor: pointer; color: var(--ink-mid); font-family: 'DM Sans', sans-serif; display: flex; align-items: center; gap: 5px; transition: all 0.15s; }
+.btn-refresh:hover { background: var(--cream); }
+table.students { width: 100%; border-collapse: collapse; font-size: 13px; }
+table.students th { padding: 10px 16px; text-align: left; font-size: 11px; font-weight: 600; color: var(--ink-light); text-transform: uppercase; letter-spacing: 0.05em; background: var(--cream); border-bottom: 1px solid var(--ink-faint); }
+table.students td { padding: 11px 16px; border-bottom: 1px solid var(--ink-faint); color: var(--ink); vertical-align: middle; }
+table.students tr:last-child td { border-bottom: none; }
+table.students tbody tr { transition: background 0.1s; cursor: pointer; }
+table.students tbody tr:hover td { background: var(--cream); }
+.pct-display { display: flex; align-items: center; gap: 8px; }
+.mini-progress { width: 50px; height: 4px; background: var(--ink-faint); border-radius: 99px; overflow: hidden; }
+.mini-progress-fill { height: 100%; background: var(--green); border-radius: 99px; }
+.crit-badge-sm { font-size: 10px; padding: 2px 6px; border-radius: var(--radius-pill); font-family: 'DM Mono', monospace; font-weight: 500; display: inline-block; }
+.btn-open { padding: 5px 10px; border: 1px solid var(--ink-faint); border-radius: var(--radius-sm); background: none; font-size: 11px; cursor: pointer; color: var(--ink-mid); font-family: 'DM Sans', sans-serif; transition: all 0.15s; }
+.btn-open:hover { background: var(--green-light); color: var(--green); border-color: var(--green); }
+.open-student-panel { background: var(--paper); border: 1px solid var(--ink-faint); border-radius: var(--radius); padding: 1.25rem 1.5rem; }
+.open-student-panel h3 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+.open-student-panel p { font-size: 13px; color: var(--ink-light); margin-bottom: 12px; }
+.input-group { display: flex; gap: 8px; }
+.input-group .form-input { flex: 1; }
+.input-group .btn-save { width: auto; padding: 10px 20px; }
+.empty { text-align: center; padding: 3rem 1rem; color: var(--ink-light); }
+.empty h3 { font-size: 16px; color: var(--ink-mid); margin-bottom: 8px; }
+.empty p { font-size: 13px; }
+.loading-spinner { display: inline-block; width: 18px; height: 18px; border: 2px solid var(--ink-faint); border-top-color: var(--green); border-radius: 50%; animation: spin 0.7s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (max-width: 600px) {
+  .topnav { padding: 0 1rem; }
+  .main { padding: 1.5rem 1rem 3rem; }
+  .landing-title { font-size: 30px; }
+  .role-grid { grid-template-columns: 1fr; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .dash-grid { grid-template-columns: 1fr; }
+  .page-header { flex-direction: column; gap: 12px; }
+  .header-actions { width: 100%; justify-content: space-between; }
+}
+</style>
+</head>
+<body>
+<div class="app-shell">
+  <nav class="topnav">
+    <div class="nav-brand">
+      <div class="nav-dot">
+        <svg viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M8 3l5 5-5 5" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div>
+        <div class="nav-title">EE Chemistry Tracker</div>
+        <div class="nav-subtitle">Fountainhead Schools &middot; 2025&ndash;27</div>
+      </div>
+    </div>
+    <div class="nav-right" id="nav-right" style="display:none">
+      <div class="nav-user">
+        <div class="avatar" id="nav-avatar"></div>
+        <span id="nav-name"></span>
+      </div>
+      <button class="btn-ghost" onclick="goHome()">Sign out</button>
+    </div>
+  </nav>
+
+  <main class="main">
+    <!-- LANDING -->
+    <div class="screen active" id="screen-landing">
+      <div class="landing-hero">
+        <span class="landing-eyebrow">IB Extended Essay &middot; Chemistry</span>
+        <h1 class="landing-title">Your path to<br><em>full marks</em></h1>
+        <p class="landing-sub">A complete criteria-by-criteria checklist that saves your progress automatically to Google Sheets.</p>
+      </div>
+      <div class="role-grid">
+        <div class="role-card" id="card-student" onclick="selectRole('student')">
+          <div class="role-icon" style="background:var(--green-light)">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <rect x="4" y="3" width="14" height="16" rx="2" stroke="var(--green)" stroke-width="1.5"/>
+              <line x1="7" y1="8" x2="15" y2="8" stroke="var(--green)" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="7" y1="11.5" x2="15" y2="11.5" stroke="var(--green)" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="7" y1="15" x2="11" y2="15" stroke="var(--green)" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>I'm a student</h3>
+          <p>Work through the checklist, track your progress per criterion, and self-review before submission.</p>
+        </div>
+        <div class="role-card" id="card-teacher" onclick="selectRole('teacher')">
+          <div class="role-icon" style="background:var(--blue-light)">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <circle cx="11" cy="8" r="3.5" stroke="var(--blue)" stroke-width="1.5"/>
+              <path d="M4 19c0-3.866 3.134-7 7-7s7 3.134 7 7" stroke="var(--blue)" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M15 5l2 2 3.5-3.5" stroke="var(--blue)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>I'm a teacher</h3>
+          <p>View all students' progress on one dashboard, open individual checklists, and mark items on their behalf.</p>
+        </div>
+      </div>
+      <div class="form-panel" id="form-student">
+        <label class="form-label">Your full name</label>
+        <input class="form-input" id="input-sname" type="text" placeholder="e.g. Priya Sharma" autocomplete="name"
+          onkeydown="if(event.key==='Enter')startStudent()"/>
+        <button class="btn-primary" onclick="startStudent()" id="btn-student-go">
+          <span>Open my checklist</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="toast" id="toast-student"></div>
+      </div>
+      <div class="form-panel" id="form-teacher">
+        <label class="form-label">Your name (recorded as reviewer)</label>
+        <input class="form-input" id="input-tname" type="text" placeholder="e.g. Ms. Patel"
+          onkeydown="if(event.key==='Enter')startTeacher()"/>
+        <button class="btn-primary" onclick="startTeacher()" id="btn-teacher-go">
+          <span>Open teacher dashboard</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="toast" id="toast-teacher"></div>
+      </div>
+    </div>
+
+    <!-- STUDENT CHECKLIST -->
+    <div class="screen" id="screen-student">
+      <div class="page-header">
+        <div class="page-header-left">
+          <h2 id="student-title">My Checklist</h2>
+          <p id="student-subtitle">IB Chemistry Extended Essay &middot; All Criteria</p>
+        </div>
+        <div class="header-actions">
+          <div class="save-indicator">
+            <div class="save-dot" id="save-dot"></div>
+            <span id="save-label">All saved</span>
+          </div>
+          <button class="btn-save" id="btn-save" onclick="doSave()">Save to Sheet</button>
+        </div>
+      </div>
+      <div class="stats-row" id="student-stats"></div>
+      <div class="progress-track"><div class="progress-fill" id="s-progress" style="width:0%"></div></div>
+      <div class="reviewer-bar">
+        <label>Reviewed by:</label>
+        <input type="text" id="input-reviewer" placeholder="Teacher name (optional)" />
+      </div>
+      <div class="crit-pills" id="crit-pills">
+        <button class="crit-pill-btn active" data-c="all" onclick="filterCrit('all',this)">All criteria</button>
+        <button class="crit-pill-btn" data-c="A" style="color:var(--green)" onclick="filterCrit('A',this)">A &middot; Framework</button>
+        <button class="crit-pill-btn" data-c="B" style="color:var(--blue)" onclick="filterCrit('B',this)">B &middot; Knowledge</button>
+        <button class="crit-pill-btn" data-c="C" style="color:var(--purple)" onclick="filterCrit('C',this)">C &middot; Analysis</button>
+        <button class="crit-pill-btn" data-c="D" style="color:var(--amber)" onclick="filterCrit('D',this)">D &middot; Discussion</button>
+        <button class="crit-pill-btn" data-c="E" style="color:var(--rose)" onclick="filterCrit('E',this)">E &middot; Reflection</button>
+      </div>
+      <div id="checklist-body"></div>
+      <div style="margin-top:1.5rem">
+        <button class="btn-primary" onclick="doSave()" id="btn-save-bottom">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 10v3a1 1 0 001 1h10a1 1 0 001-1v-3M8 2v8M5 7l3 3 3-3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Save progress to Google Sheet
+        </button>
+      </div>
+    </div>
+
+    <!-- TEACHER DASHBOARD -->
+    <div class="screen" id="screen-teacher">
+      <div class="page-header">
+        <div class="page-header-left">
+          <h2>Teacher Dashboard</h2>
+          <p id="teacher-subtitle">Viewing as <strong id="teacher-name-display"></strong></p>
+        </div>
+        <div class="header-actions">
+          <button class="btn-refresh" onclick="loadDashboard()">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M11 6.5A4.5 4.5 0 112 6.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M11 2.5v4h-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Refresh
+          </button>
+        </div>
+      </div>
+      <div class="dash-grid" id="dash-stats"></div>
+      <div class="table-wrap">
+        <div class="table-header">
+          <span class="table-title">Student progress</span>
+          <span style="font-size:12px;color:var(--ink-light)">Click a row to open that student's checklist</span>
+        </div>
+        <div id="dash-table"></div>
+      </div>
+      <div class="open-student-panel">
+        <h3>Open a student's checklist</h3>
+        <p>Type any student's name to load their checklist and review or tick items on their behalf.</p>
+        <div class="input-group">
+          <input class="form-input" type="text" id="input-open-student" placeholder="Student name"
+            onkeydown="if(event.key==='Enter')openStudentChecklist()"/>
+          <button class="btn-save" onclick="openStudentChecklist()">Open checklist</button>
+        </div>
+        <div class="toast" id="toast-open" style="margin-top:8px"></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+// ── CONFIG ──
+// IMPORTANT: Replace this with your actual deployed Apps Script Web App URL
+var SCRIPT_URL = 'https://script.google.com/a/macros/fountainheadschools.org/s/AKfycby68TJnkweVeQ5vMR2JWNu7oic6dghbBLGKPBtEXaLDTInU7k-jzGmHn05LW7GCPCLy/exec';
+
+var CRIT_COLORS = {
+  A: { color:'var(--green)',  light:'var(--green-light)',  badge:'#1D6B4A' },
+  B: { color:'var(--blue)',   light:'var(--blue-light)',   badge:'#1A4A7A' },
+  C: { color:'var(--purple)', light:'var(--purple-light)', badge:'#4A3580' },
+  D: { color:'var(--amber)',  light:'var(--amber-light)',  badge:'#8A5A0A' },
+  E: { color:'var(--rose)',   light:'var(--rose-light)',   badge:'#8A2A4A' },
+};
+
+var TAG_STYLE = {
+  'common mistake': { bg:'#FDEDED',               color:'#B53030' },
+  'tip':            { bg:'var(--green-light)',     color:'var(--green)' },
+  'practical':      { bg:'var(--blue-light)',      color:'var(--blue)' },
+  'database':       { bg:'var(--purple-light)',    color:'var(--purple)' },
+  'writing':        { bg:'var(--amber-light)',     color:'var(--amber)' },
+};
+
+// ── CHECKLIST DATA ──
+var CRITERIA = [
+  { id:'A', title:'Framework for the essay', sections:[
+    { name:'Research question', items:[
+      { t:'Research question clearly names both the independent variable (what you change) and the dependent variable (what you measure).', tag:'writing' },
+      { t:'Research question is not a yes/no question - it invites a quantified, nuanced answer.', tag:'common mistake', tip:'Avoid "Does X affect Y?" - instead write "How does X affect Y measured by Z?"' },
+      { t:'Research question does not begin with "To what extent..." - this leads to vague, unfocused essays.', tag:'common mistake' },
+      { t:'Research question specifies the range of the investigation (e.g. pH 4-8, concentrations 0.1-0.5 mol/dm³).', tag:'tip' },
+      { t:'Research question is achievable at school level - not too ambitious, not trivial.', tag:'tip' },
+      { t:'Research question involves a genuine chemical issue: a reaction, equilibrium, or measurable chemical property.', tag:'writing' },
+    ]},
+    { name:'Structure and conventions', items:[
+      { t:'Title and RQ are distinct - title is broad, RQ is precise with variables named.', tag:'writing' },
+      { t:'Rationale for the chosen approach (practical, database, literature) is clearly stated in the introduction.', tag:'writing' },
+      { t:'Chemical formulas use correct subscripts throughout - H₂SO₄ not H2SO4.', tag:'common mistake', tip:'Use Unicode subscripts or proper formatting - examiners penalise inconsistent notation.' },
+      { t:'IUPAC names are used wherever possible instead of trivial names.', tag:'tip' },
+      { t:'Technical vocabulary is consistent throughout - same term not referred to by different names.', tag:'writing' },
+      { t:'All figures, tables, and images are numbered, titled, and captioned.', tag:'common mistake' },
+      { t:'All graphs have labelled axes with units.', tag:'common mistake', tip:'An unlabelled axis is meaningless to an examiner - very common and easily avoidable.' },
+      { t:'Appendices contain: risk assessment, safety data, equipment lists, raw data, sample calculations.', tag:'writing' },
+      { t:'Word count is within 4,000 words; appendices are not counted.', tag:'writing' },
+    ]},
+    { name:'Methodology rationale', items:[
+      { t:'If practical: justification explains why this specific technique was chosen over alternatives.', tag:'practical' },
+      { t:'If database-based: at least two independent databases are identified and rationale given.', tag:'database' },
+      { t:'If literature-based: sources are acknowledged and their relevance to the RQ is explained.', tag:'database' },
+      { t:'Preliminary experiments or test runs are mentioned and placed in the appendix.', tag:'practical' },
+    ]},
+  ]},
+  { id:'B', title:'Knowledge and understanding', sections:[
+    { name:'Chemical theory', items:[
+      { t:'Background covers theory directly relevant to the RQ - not generic chemistry revision.', tag:'common mistake', tip:'Do not explain what the pH scale is if your essay is about pH. Assume the reader has IB-level knowledge.' },
+      { t:'Underlying chemical principles are explained: mechanisms, equilibria, kinetics, thermodynamics, etc.', tag:'writing' },
+      { t:'The theoretical framework is connected back to the RQ - clear why this background is relevant.', tag:'writing' },
+      { t:"Relevant laws or equations (Beer-Lambert, Raoult's law, VSEPR etc.) are cited and explained correctly.", tag:'writing' },
+      { t:'Sources are peer-reviewed journals, reputable databases, or textbooks - not Wikipedia.', tag:'common mistake', tip:'Wikipedia is fine for orientation but must never be cited in the essay itself.' },
+    ]},
+    { name:'Chemical language and notation', items:[
+      { t:'"Atom", "molecule", "ion", and "compound" are never used interchangeably - each used precisely.', tag:'common mistake', tip:'Using "atoms" when you mean "ions" is one of the most penalised errors in Chemistry EEs.' },
+      { t:'All balanced equations include correct state symbols: (s), (l), (g), (aq).', tag:'common mistake' },
+      { t:'Reaction mechanisms are shown where applicable.', tag:'tip' },
+      { t:'SI units are used throughout: mol/dm³ not M, J not cal, nm not Å.', tag:'writing' },
+      { t:'Significant figures are consistent with the precision of measuring instruments used.', tag:'common mistake' },
+      { t:'Decimal places are consistent within each data column.', tag:'writing' },
+      { t:'Uncertainty values are quoted correctly: ±0.05 cm³ not just ±0.05.', tag:'tip' },
+    ]},
+    { name:'Understanding sources', items:[
+      { t:"Findings from literature or databases are explained and interpreted - not just reproduced.", tag:'common mistake', tip:"If you can't explain in your own words why a value is what it is, you haven't understood the source." },
+      { t:'If using databases: values from different sources are compared and discrepancies discussed.', tag:'database' },
+      { t:'If practical: the chemistry behind the technique is explained (e.g. why spectrophotometry works here).', tag:'practical' },
+      { t:'Computer models or simulations are understood - not used as black boxes.', tag:'tip' },
+    ]},
+  ]},
+  { id:'C', title:'Analysis and line of argument', sections:[
+    { name:'Data presentation', items:[
+      { t:'All raw data tables have a title, column headers, SI units, and uncertainties where applicable.', tag:'common mistake' },
+      { t:'Processed data tables are separate from raw data and clearly labelled.', tag:'writing' },
+      { t:'Mean values are calculated and an example calculation is shown in the body or appendix.', tag:'common mistake', tip:'Show one worked example of every type of calculation - the examiner must see you understand the process.' },
+      { t:'Percentage and absolute uncertainties are calculated and propagated correctly.', tag:'tip' },
+      { t:'Large raw data sets go in the appendix; a summary table appears in the body.', tag:'writing' },
+    ]},
+    { name:'Graphs and visual analysis', items:[
+      { t:'Correct graph type chosen: Cartesian for continuous variables, bar chart for categorical/discrete data.', tag:'common mistake', tip:'Drawing a best-fit line on a bar chart or on a graph where x-axis shows experiment numbers is a major error.' },
+      { t:'Error bars are included on graphs where uncertainties apply.', tag:'tip' },
+      { t:"Trend line is appropriate for the chemical phenomenon being investigated.", tag:'common mistake', tip:"Don't force a linear trend on data that should follow an exponential or logarithmic curve." },
+      { t:'Trend line is actively interpreted - slope, intercept, or curvature is explained chemically.', tag:'writing' },
+      { t:'Graphs are analysed, not just described ("the linear relationship suggests... because...").', tag:'common mistake' },
+    ]},
+    { name:'Argument and reasoning', items:[
+      { t:'Clear, sustained line of argument from introduction through results to conclusion.', tag:'writing' },
+      { t:'Every piece of data is linked explicitly back to the research question.', tag:'writing' },
+      { t:'Statistical analysis (SD, correlation, t-test) used where appropriate and justified.', tag:'tip', tip:'If you use statistical tools, explain why that test was chosen and what the output means chemically.' },
+      { t:'Anomalous data points are identified, discussed, and either retained or excluded with justification.', tag:'common mistake' },
+      { t:'Conclusion does not introduce new information not discussed in the analysis.', tag:'writing' },
+    ]},
+  ]},
+  { id:'D', title:'Discussion and evaluation', sections:[
+    { name:'Discussion of results', items:[
+      { t:'Results compared to theoretical or literature values; percentage error calculated.', tag:'common mistake', tip:'Always state the expected/literature value alongside your experimental value and calculate % error.' },
+      { t:'Explanations for trends go beyond description - the underlying chemistry is invoked.', tag:'writing' },
+      { t:'Unexpected or contradictory results are discussed honestly - not ignored.', tag:'common mistake' },
+      { t:'Potential biases in the investigation are acknowledged.', tag:'tip' },
+      { t:'Practical implications or real-world relevance of findings are discussed briefly.', tag:'writing' },
+    ]},
+    { name:'Evaluation of methodology', items:[
+      { t:'Errors categorised: systematic (directional, consistent) vs. random (scatter).', tag:'common mistake', tip:'Systematic errors shift all values in one direction; random errors scatter data around the mean.' },
+      { t:'For each significant error: source, likely magnitude, and directional impact are discussed.', tag:'common mistake', tip:'"Human error" is not acceptable - identify the specific procedural cause.' },
+      { t:'Evaluation focuses on the most impactful errors - not an exhaustive list of minor issues.', tag:'tip' },
+      { t:'Quality and reliability of sources (for database essays) are critically assessed.', tag:'database' },
+      { t:'Alternative methods or instruments are discussed, with reasons they would reduce error.', tag:'writing' },
+    ]},
+    { name:'Conclusion', items:[
+      { t:'Conclusion directly and explicitly answers the research question.', tag:'common mistake', tip:'Re-read your RQ before writing the conclusion. Every sentence should connect to it.' },
+      { t:'Conclusion is supported by evidence in the essay - not by assertions or new claims.', tag:'writing' },
+      { t:'Degree of certainty reflects the quality of the data (strong/weak evidence acknowledged).', tag:'tip' },
+      { t:'Suggestions for further research arise from specific observations made during the investigation.', tag:'common mistake', tip:'"Further research could be done on..." is weak. Reference a specific anomaly or limitation you observed.' },
+      { t:'Further research suggestions are specific: what variable, method, and question would be investigated.', tag:'writing' },
+    ]},
+  ]},
+  { id:'E', title:'Reflection', sections:[
+    { name:'RPPF reflections', items:[
+      { t:'Three formal Reflections on Planning and Progress (RPPF) completed: initial, interim, and final.', tag:'writing' },
+      { t:"Each reflection is under 500 words and written in the student's own voice.", tag:'writing' },
+      { t:'Reflections show genuine intellectual engagement - not just a log of tasks completed.', tag:'common mistake', tip:'Examiners distinguish between "I did X then Y" and genuine reflection on why something surprised or changed your thinking.' },
+    ]},
+    { name:'Initial reflection', items:[
+      { t:'Explains why this topic and research question were chosen personally.', tag:'writing' },
+      { t:'Shows what prior knowledge the student had and what gaps were identified.', tag:'tip' },
+      { t:'Anticipated challenges and a plan for addressing them are mentioned.', tag:'writing' },
+    ]},
+    { name:'Interim reflection', items:[
+      { t:'Discusses how the investigation evolved from the original plan.', tag:'writing' },
+      { t:'Any pivots in methodology, RQ, or approach are explained and justified.', tag:'tip' },
+      { t:'Challenges encountered are discussed with honesty - not glossed over.', tag:'common mistake', tip:'Describing a problem and how you adapted is far more impressive than pretending everything went smoothly.' },
+      { t:'Shows developing understanding of chemistry, not just project management.', tag:'writing' },
+    ]},
+    { name:'Final reflection', items:[
+      { t:'Evaluates what was learned - about chemistry, research, and academic work.', tag:'writing' },
+      { t:'Connects the investigation to wider ideas in chemistry or science.', tag:'tip' },
+      { t:'Addresses specifically what the student would do differently.', tag:'writing' },
+      { t:'Does not simply summarise the essay - reflects on the process of creating it.', tag:'common mistake' },
+    ]},
+    { name:'Viva voce preparation', items:[
+      { t:'Can explain the research question and methodology clearly in 2 minutes without notes.', tag:'tip' },
+      { t:'Prepared to discuss unexpected results and how they affected the conclusion.', tag:'tip' },
+      { t:'Can suggest at least two specific methodological improvements and explain why each would help.', tag:'tip' },
+      { t:'Prepared to connect findings to a broader area of chemistry.', tag:'tip' },
+    ]},
+  ]},
+];
+
+// ── HELPERS ──
+function escHtml(str) {
+  return String(str)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function escAttr(str) {
+  return String(str)
+    .replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+// ── STATE ──
+var role = null, studentName = '', teacherName = '';
+var state = {}, openBlocks = {}, critFilter = 'all';
+var saveTimer = null, isDirty = false;
+
+function initState() {
+  state = {}; openBlocks = {};
+  CRITERIA.forEach(function(c) {
+    openBlocks[c.id] = true;
+    c.sections.forEach(function(s) {
+      s.items.forEach(function(item, i) {
+        state[c.id+'||'+s.name+'||'+i] = false;
+      });
+    });
+  });
+}
+initState();
+
+// ── ROLE SELECTION ──
+function selectRole(r) {
+  role = r;
+  ['student','teacher'].forEach(function(x) {
+    document.getElementById('card-'+x).classList.toggle('selected', x===r);
+    document.getElementById('form-'+x).style.display = x===r ? 'block' : 'none';
+  });
+  setTimeout(function() {
+    document.getElementById(r==='student' ? 'input-sname' : 'input-tname').focus();
+  }, 100);
+}
+
+// ── STUDENT START ──
+async function startStudent() {
+  var name = document.getElementById('input-sname').value.trim();
+  if (!name) { showToast('toast-student','Please enter your full name.','err'); return; }
+  studentName = name;
+  document.getElementById('btn-student-go').disabled = true;
+  showToast('toast-student','Loading your progress...','info');
+  initState();
+  try {
+    var res = await api({ action:'load', student:name });
+    if (res && res.rawData) {
+      var saved = JSON.parse(res.rawData);
+      Object.keys(saved).forEach(function(k) { if (k in state) state[k] = !!saved[k]; });
+      if (res.reviewer) document.getElementById('input-reviewer').value = res.reviewer;
+    }
+  } catch(e) { /* first time user */ }
+  document.getElementById('btn-student-go').disabled = false;
+  document.getElementById('student-title').textContent = name + '’s checklist';
+  document.getElementById('student-subtitle').textContent = 'IB Chemistry Extended Essay · All Criteria';
+  setNav(name, 'student');
+  showScreen('screen-student');
+  renderChecklist();
+}
+
+// ── TEACHER START ──
+async function startTeacher() {
+  var name = document.getElementById('input-tname').value.trim();
+  if (!name) { showToast('toast-teacher','Please enter your name.','err'); return; }
+  teacherName = name;
+  document.getElementById('teacher-name-display').textContent = name;
+  setNav(name, 'teacher');
+  showScreen('screen-teacher');
+  loadDashboard();
+}
+
+// ── OPEN STUDENT AS TEACHER ──
+async function openStudentChecklist() {
+  var name = document.getElementById('input-open-student').value.trim();
+  if (!name) { showToast('toast-open','Enter a student name.','err'); return; }
+  showToast('toast-open','Loading data...','info');
+  studentName = name;
+  initState();
+  try {
+    var res = await api({ action:'load', student:name });
+    if (res && res.rawData) {
+      var saved = JSON.parse(res.rawData);
+      Object.keys(saved).forEach(function(k) { if (k in state) state[k] = !!saved[k]; });
+    }
+  } catch(e) {}
+  document.getElementById('student-title').textContent = name + '’s checklist';
+  document.getElementById('student-subtitle').textContent = 'Reviewed by ' + teacherName + ' · Teacher view';
+  document.getElementById('input-reviewer').value = teacherName;
+  showScreen('screen-student');
+  renderChecklist();
+}
+
+// ── DASHBOARD ──
+async function loadDashboard() {
+  document.getElementById('dash-table').innerHTML = '<div class="empty"><div class="loading-spinner"></div><p style="margin-top:12px">Loading student data...</p></div>';
+  try {
+    var students = await api({ action:'list' });
+    renderDashboard(Array.isArray(students) ? students : []);
+  } catch(e) {
+    document.getElementById('dash-table').innerHTML = '<div class="empty"><h3>Connection error</h3><p>Make sure the Google Apps Script is deployed correctly and accessible.</p></div>';
+  }
+}
+
+function renderDashboard(students) {
+  var total = students.length;
+  var avg = total ? Math.round(students.reduce(function(a,s){ return a+(parseInt(s.pct)||0); },0)/total) : 0;
+  var done = students.filter(function(s){ return parseInt(s.pct)===100; }).length;
+
+  document.getElementById('dash-stats').innerHTML = [
+    { label:'Total students', val:total, hi:false },
+    { label:'Average progress', val:avg+'%', hi:false },
+    { label:'Fully complete', val:done, hi:done>0 },
+  ].map(function(s) {
+    return '<div class="stat-card"><div class="stat-label">'+s.label+'</div><div class="stat-value'+(s.hi?' green':'')+'">'+s.val+'</div></div>';
+  }).join('');
+
+  if (!total) {
+    document.getElementById('dash-table').innerHTML = '<div class="empty"><h3>No student data yet</h3><p>Students must open the checklist, enter their name, and save their progress at least once.</p></div>';
+    return;
+  }
+
+  var sorted = students.slice().sort(function(a,b){ return (parseInt(b.pct)||0)-(parseInt(a.pct)||0); });
+  var CRIT_IDS = ['A','B','C','D','E'];
+
+  var rowsHtml = sorted.map(function(s) {
+    var pct = parseInt(s.pct)||0;
+    var pctColor = pct>=75 ? 'var(--green)' : pct>=40 ? 'var(--amber)' : 'var(--red)';
+    var crits = CRIT_IDS.map(function(c) {
+      var val = (s['crit'+c]||'0/0');
+      return '<td><span class="crit-badge-sm" style="background:'+CRIT_COLORS[c].light+';color:'+CRIT_COLORS[c].badge+'">'+escHtml(val)+'</span></td>';
+    }).join('');
+    return '<tr class="student-row" data-student="'+escAttr(s.name)+'">'+
+      '<td style="font-weight:600">'+escHtml(s.name)+'</td>'+
+      '<td><div class="pct-display">'+
+        '<span style="font-family:'DM Mono',monospace;font-size:13px;font-weight:500;color:'+pctColor+'">'+escHtml(s.pct||'0%')+'</span>'+
+        '<div class="mini-progress"><div class="mini-progress-fill" style="width:'+pct+'%;background:'+pctColor+'"></div></div>'+
+      '</div></td>'+
+      crits+
+      '<td style="color:var(--ink-light);font-size:12px;white-space:nowrap">'+escHtml(s.lastUpdated||'—')+'</td>'+
+      '<td style="color:var(--ink-light);font-size:12px">'+escHtml(s.reviewer||'—')+'</td>'+
+      '<td><button class="btn-open" data-student="'+escAttr(s.name)+'">Open &rarr;</button></td>'+
+    '</tr>';
+  }).join('');
+
+  document.getElementById('dash-table').innerHTML =
+    '<div style="overflow-x:auto"><table class="students"><thead><tr>'+
+    '<th>Student</th><th>Overall</th>'+
+    CRIT_IDS.map(function(c){ return '<th style="color:'+CRIT_COLORS[c].badge+'">Crit '+c+'</th>'; }).join('')+
+    '<th>Last saved</th><th>Reviewer</th><th></th>'+
+    '</tr></thead><tbody>'+rowsHtml+'</tbody></table></div>';
+
+  // Attach events after render using data attributes
+  document.querySelectorAll('#dash-table .student-row').forEach(function(row) {
+    row.addEventListener('click', function(e) {
+      var name = row.getAttribute('data-student');
+      document.getElementById('input-open-student').value = name;
+      openStudentChecklist();
+    });
+  });
+  document.querySelectorAll('#dash-table .btn-open').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var name = btn.getAttribute('data-student');
+      document.getElementById('input-open-student').value = name;
+      openStudentChecklist();
+    });
+  });
+}
+
+// ── CHECKLIST RENDER ──
+function filterCrit(c, btn) {
+  critFilter = c;
+  document.querySelectorAll('.crit-pill-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  renderChecklist();
+}
+
+function toggleBlock(id) {
+  openBlocks[id] = !openBlocks[id];
+  renderChecklist();
+}
+
+function tick(key) {
+  state[key] = !state[key];
+  renderChecklist();
+  markDirty();
+}
+
+function markDirty() {
+  isDirty = true;
+  document.getElementById('save-dot').className = 'save-dot unsaved';
+  document.getElementById('save-label').textContent = 'Unsaved changes';
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(doSave, 10000);
+}
+
+function renderChecklist() {
+  var keys = Object.keys(state);
+  var total = keys.length;
+  var done = keys.filter(function(k){ return state[k]; }).length;
+  var pct = total ? Math.round(done/total*100) : 0;
+
+  document.getElementById('s-progress').style.width = pct+'%';
+
+  var commonKeys = keys.filter(function(k) {
+    var parts = k.split('||');
+    var crit = CRITERIA.find(function(x){ return x.id===parts[0]; });
+    if (!crit) return false;
+    var sec = crit.sections.find(function(x){ return x.name===parts[1]; });
+    return sec && sec.items[parseInt(parts[2])] && sec.items[parseInt(parts[2])].tag==='common mistake';
+  });
+  var cmDone = commonKeys.filter(function(k){ return state[k]; }).length;
+
+  document.getElementById('student-stats').innerHTML = [
+    { label:'Completed',       val:done+'/'+total,           hi:done===total },
+    { label:'Progress',        val:pct+'%',                  hi:pct===100 },
+    { label:'Remaining',       val:total-done,               hi:false },
+    { label:'Mistakes cleared',val:cmDone+'/'+commonKeys.length, hi:cmDone===commonKeys.length },
+  ].map(function(s){
+    return '<div class="stat-card"><div class="stat-label">'+s.label+'</div><div class="stat-value'+(s.hi?' green':'')+'">'+s.val+'</div></div>';
+  }).join('');
+
+  var body = document.getElementById('checklist-body');
+
+  body.innerHTML = CRITERIA.map(function(c) {
+    if (critFilter !== 'all' && critFilter !== c.id) return '';
+    var col = CRIT_COLORS[c.id];
+    var cKeys = keys.filter(function(k){ return k.indexOf(c.id+'||')===0; });
+    var cDone = cKeys.filter(function(k){ return state[k]; }).length;
+    var cPct = cKeys.length ? Math.round(cDone/cKeys.length*100) : 0;
+    var isOpen = openBlocks[c.id];
+
+    var sectionsHtml = '';
+    if (isOpen) {
+      c.sections.forEach(function(s) {
+        var itemsHtml = '';
+        s.items.forEach(function(item, i) {
+          var key = c.id+'||'+s.name+'||'+i;
+          var checked = state[key];
+          var ts = TAG_STYLE[item.tag] || {};
+          var tagHtml = item.tag ? '<span class="tag" style="background:'+ts.bg+';color:'+ts.color+'">'+escHtml(item.tag)+'</span>' : '';
+          var tipHtml = item.tip ? '<div class="tip-text">'+escHtml(item.tip)+'</div>' : '';
+          itemsHtml +=
+            '<div class="check-item" data-key="'+escAttr(key)+'">' +
+              '<div class="checkbox'+(checked?' checked':'')+'">'+
+                '<svg width="10" height="8" viewBox="0 0 10 8" fill="none">'+
+                  '<path d="M1 4L4 7L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>'+
+                '</svg>'+
+              '</div>'+
+              '<div class="item-content">'+
+                '<div class="item-text'+(checked?' checked':'')+'">'+escHtml(item.t)+'</div>'+
+                '<div class="item-meta">'+tagHtml+'</div>'+
+                tipHtml+
+              '</div>'+
+            '</div>';
+        });
+        sectionsHtml += '<div class="section-label">'+escHtml(s.name)+'</div>'+itemsHtml;
+      });
+    }
+
+    return '<div class="crit-block">'+
+      '<div class="crit-header" data-crit="'+escAttr(c.id)+'">'+
+        '<span class="crit-badge" style="background:'+col.light+';color:'+col.badge+'">Criterion '+c.id+'</span>'+
+        '<span class="crit-name">'+escHtml(c.title)+'</span>'+
+        '<span class="crit-counter">'+cDone+'/'+cKeys.length+'</span>'+
+        '<svg class="crit-chevron'+(isOpen?' open':'')+'" width="14" height="14" viewBox="0 0 14 14" fill="none">'+
+          '<path d="M5 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>'+
+        '</svg>'+
+      '</div>'+
+      '<div class="crit-mini-bar"><div class="crit-mini-fill" style="width:'+cPct+'%;background:'+col.color+'"></div></div>'+
+      (isOpen ? '<div>'+sectionsHtml+'</div>' : '')+
+    '</div>';
+  }).join('');
+
+  // Attach events after render via data attributes
+  body.querySelectorAll('.check-item').forEach(function(el) {
+    el.addEventListener('click', function() { tick(el.getAttribute('data-key')); });
+  });
+  body.querySelectorAll('.crit-header').forEach(function(el) {
+    el.addEventListener('click', function() { toggleBlock(el.getAttribute('data-crit')); });
+  });
+}
+
+// ── SAVE ──
+async function doSave() {
+  clearTimeout(saveTimer);
+  var btn = document.getElementById('btn-save');
+  var btn2 = document.getElementById('btn-save-bottom');
+  btn.disabled = true; btn.textContent = 'Saving...';
+  btn2.disabled = true;
+  var reviewer = document.getElementById('input-reviewer').value.trim();
+  try {
+    await api({ action:'save', student:studentName, data:JSON.stringify(state), reviewer:reviewer });
+    isDirty = false;
+    document.getElementById('save-dot').className = 'save-dot saved';
+    document.getElementById('save-label').textContent = 'Saved ✓';
+    setTimeout(function(){ document.getElementById('save-label').textContent = 'All saved'; }, 3000);
+  } catch(e) {
+    document.getElementById('save-dot').className = 'save-dot unsaved';
+    document.getElementById('save-label').textContent = 'Save failed';
+  }
+  btn.disabled = false; btn.textContent = 'Save to Sheet';
+  btn2.disabled = false;
+}
+
+// ── API ──
+async function api(params) {
+  var url = new URL(SCRIPT_URL);
+  Object.entries(params).forEach(function(e) { url.searchParams.set(e[0], e[1]); });
+  var res = await fetch(url.toString(), { redirect:'follow' });
+  var text = await res.text();
+  var json;
+  try { json = JSON.parse(text); } catch(e) { throw new Error('Invalid response: '+text.slice(0,200)); }
+  if (!json.ok) throw new Error(json.error || 'Unknown error');
+  return json.data;
+}
+
+// ── UI UTILS ──
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(function(s){ s.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function setNav(name, r) {
+  document.getElementById('nav-right').style.display = 'flex';
+  var av = document.getElementById('nav-avatar');
+  av.textContent = name.split(' ').map(function(w){ return w[0]||''; }).join('').slice(0,2).toUpperCase();
+  av.style.background = r==='teacher' ? 'var(--blue-light)' : 'var(--green-light)';
+  av.style.color = r==='teacher' ? 'var(--blue)' : 'var(--green)';
+  document.getElementById('nav-name').textContent = name;
+}
+
+function goHome() {
+  initState();
+  studentName=''; teacherName=''; role=null;
+  document.getElementById('nav-right').style.display = 'none';
+  ['card-student','card-teacher'].forEach(function(id){ document.getElementById(id).classList.remove('selected'); });
+  ['form-student','form-teacher'].forEach(function(id){ document.getElementById(id).style.display='none'; });
+  document.getElementById('input-sname').value='';
+  document.getElementById('input-tname').value='';
+  document.getElementById('input-reviewer').value='';
+  showScreen('screen-landing');
+}
+
+function showToast(id, msg, type) {
+  var el = document.getElementById(id);
+  el.textContent = msg;
+  el.className = 'toast show '+type;
+}
+</script>
+</body>
+</html>
