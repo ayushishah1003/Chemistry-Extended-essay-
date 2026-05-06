@@ -20,49 +20,68 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);min-height:100vh;font-size:15px;line-height:1.6}
+
 /* NAV */
 .topnav{background:var(--paper);border-bottom:1px solid var(--ink-faint);padding:0 2rem;height:58px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200}
-.nav-brand{display:flex;align-items:center;gap:10px}
-.nav-dot{width:28px;height:28px;background:var(--green);border-radius:8px;display:flex;align-items:center;justify-content:center}
+.nav-brand{display:flex;align-items:center;gap:10px;cursor:pointer}
+.nav-dot{width:28px;height:28px;background:var(--green);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .nav-title{font-family:'DM Serif Display',serif;font-size:17px;letter-spacing:-.2px}
 .nav-sub{font-size:12px;color:var(--ink-light)}
 .nav-right{display:flex;align-items:center;gap:8px}
+.nav-user-wrap{display:none;align-items:center;gap:8px}
+.nav-user-wrap.show{display:flex}
 .nav-user{font-size:13px;color:var(--ink-mid);display:flex;align-items:center;gap:6px}
-.avatar{width:28px;height:28px;border-radius:50%;background:var(--green-light);color:var(--green);font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center}
+.avatar{width:28px;height:28px;border-radius:50%;background:var(--green-light);color:var(--green);font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .btn-ghost{background:none;border:1px solid var(--ink-faint);border-radius:var(--radius-sm);padding:5px 12px;font-size:13px;color:var(--ink-mid);cursor:pointer;font-family:inherit;transition:all .15s}
 .btn-ghost:hover{background:var(--cream);border-color:var(--ink-light)}
-.icon-btn{background:none;border:1px solid var(--ink-faint);border-radius:var(--radius-sm);width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink-mid);transition:all .15s;flex-shrink:0}
+.icon-btn{background:none;border:1px solid var(--ink-faint);border-radius:var(--radius-sm);width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink-mid);transition:all .15s}
 .icon-btn:hover{background:var(--cream);border-color:var(--ink-light)}
-/* CONNECTION BANNER */
-.conn-banner{padding:10px 18px;font-size:13px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--ink-faint)}
-.conn-banner.ok{background:#EBF4EF;color:var(--green)}
-.conn-banner.warn{background:#FDF3E3;color:var(--amber)}
-.conn-dot{width:8px;height:8px;border-radius:50%;background:currentColor;flex-shrink:0}
-.conn-banner a{color:inherit;font-weight:600;cursor:pointer;text-decoration:underline}
-/* SETTINGS MODAL */
-.modal-bg{position:fixed;inset:0;background:rgba(26,24,20,.45);z-index:500;display:none;align-items:center;justify-content:center}
+
+/* SYNC BANNER */
+.sync-banner{padding:9px 2rem;font-size:13px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--ink-faint)}
+.sync-banner.ok{background:var(--green-light);color:var(--green)}
+.sync-banner.warn{background:var(--amber-light);color:var(--amber)}
+.sync-banner.info{background:var(--blue-light);color:var(--blue)}
+.sync-dot{width:8px;height:8px;border-radius:50%;background:currentColor;flex-shrink:0}
+.sync-banner a{color:inherit;font-weight:600;cursor:pointer;text-decoration:underline}
+
+/* MODALS */
+.modal-bg{position:fixed;inset:0;background:rgba(26,24,20,.5);z-index:500;display:none;align-items:center;justify-content:center;padding:1rem}
 .modal-bg.open{display:flex}
-.modal{background:var(--paper);border-radius:var(--radius);padding:2rem;width:min(540px,94vw);box-shadow:0 20px 60px rgba(0,0,0,.25)}
-.modal h3{font-family:'DM Serif Display',serif;font-size:22px;margin-bottom:6px}
-.modal p{font-size:13px;color:var(--ink-mid);margin-bottom:1.25rem;line-height:1.55}
-.modal ol{font-size:13px;color:var(--ink-mid);padding-left:18px;line-height:2.1;margin-bottom:1.25rem}
-.modal ol li{padding-left:4px}
+.modal{background:var(--paper);border-radius:var(--radius);padding:2rem;width:min(520px,100%);box-shadow:0 20px 60px rgba(0,0,0,.25);animation:fadeUp .18s ease;max-height:90vh;overflow-y:auto}
+.modal h3{font-family:'DM Serif Display',serif;font-size:21px;margin-bottom:6px}
+.modal .msub{font-size:13px;color:var(--ink-mid);margin-bottom:1.25rem;line-height:1.55}
+.modal ol{font-size:13px;color:var(--ink-mid);padding-left:18px;line-height:2.2;margin-bottom:1.25rem}
 .modal ol code{background:var(--cream);padding:2px 6px;border-radius:4px;font-family:'DM Mono',monospace;font-size:12px;color:var(--ink)}
-.modal-row{display:flex;gap:8px}
-.modal-row input{flex:1;padding:10px 14px;border:1.5px solid var(--ink-faint);border-radius:var(--radius-sm);font-size:14px;font-family:'DM Mono',monospace;color:var(--ink);background:var(--cream);outline:none;transition:border-color .15s}
-.modal-row input:focus{border-color:var(--green);background:white}
-.modal-row input::placeholder{font-family:'DM Sans',sans-serif;font-size:13px;color:var(--ink-light)}
-.btn-save-url{padding:10px 20px;background:var(--green);color:white;border:none;border-radius:var(--radius-sm);font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;transition:all .15s;white-space:nowrap}
-.btn-save-url:hover{background:var(--green-mid)}
-.modal-close{display:flex;justify-content:flex-end;margin-top:12px}
-.btn-text{background:none;border:none;color:var(--ink-light);font-size:13px;cursor:pointer;font-family:inherit;padding:4px}
-.btn-text:hover{color:var(--ink)}
-.url-status{font-size:12px;margin-top:8px;display:none}
-.url-status.ok{color:var(--green);display:block}
-.url-status.err{color:var(--red);display:block}
+.mrow{display:flex;gap:8px;margin-bottom:8px}
+.mrow input{flex:1;padding:10px 14px;border:1.5px solid var(--ink-faint);border-radius:var(--radius-sm);font-size:14px;font-family:'DM Mono',monospace;color:var(--ink);background:var(--cream);outline:none;transition:border-color .15s}
+.mrow input:focus{border-color:var(--green);background:white}
+.mrow input.plain{font-family:'DM Sans',sans-serif;font-size:15px;letter-spacing:.25em}
+.mrow input.plain::placeholder{letter-spacing:0;font-size:13px}
+.btn-mgo{padding:10px 20px;background:var(--green);color:white;border:none;border-radius:var(--radius-sm);font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;transition:all .15s;white-space:nowrap}
+.btn-mgo:hover{background:var(--green-mid)}
+.btn-mgo:disabled{background:var(--ink-faint);color:var(--ink-light);cursor:not-allowed}
+.mstatus{font-size:12px;margin-top:6px;display:none;padding:8px 12px;border-radius:var(--radius-sm)}
+.mstatus.ok{display:block;background:var(--green-light);color:var(--green)}
+.mstatus.err{display:block;background:var(--red-light);color:var(--red)}
+.mfoot{display:flex;justify-content:flex-end;margin-top:14px}
+.btn-txt{background:none;border:none;color:var(--ink-light);font-size:13px;cursor:pointer;font-family:inherit;padding:4px 8px}
+.btn-txt:hover{color:var(--ink)}
+.mdivider{border:none;border-top:1px solid var(--ink-faint);margin:1.25rem 0}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* SHEET-CHANGED TOAST */
+.sync-alert{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--blue);color:white;border-radius:var(--radius);padding:14px 18px;font-size:13px;display:none;box-shadow:var(--shadow);z-index:300;max-width:300px;line-height:1.5}
+.sync-alert.show{display:block;animation:fadeUp .2s ease}
+.sync-alert strong{display:block;margin-bottom:4px;font-size:14px}
+.sync-alert-btns{display:flex;gap:8px;margin-top:10px}
+.sa-yes{padding:6px 14px;background:white;color:var(--blue);border:none;border-radius:var(--radius-sm);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit}
+.sa-no{padding:6px 14px;background:rgba(255,255,255,.2);color:white;border:none;border-radius:var(--radius-sm);font-size:12px;cursor:pointer;font-family:inherit}
+
 /* MAIN */
 .main{max-width:900px;margin:0 auto;width:100%;padding:2rem 1.5rem 4rem}
 .screen{display:none}.screen.active{display:block}
+
 /* LANDING */
 .landing-hero{text-align:center;padding:3rem 0 2.5rem}
 .eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.15em;color:var(--green);text-transform:uppercase;margin-bottom:16px;display:block}
@@ -77,7 +96,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .role-card h3{font-size:15px;font-weight:600;margin-bottom:4px}
 .role-card p{font-size:13px;color:var(--ink-mid);line-height:1.45}
 .form-panel{background:var(--paper);border:1px solid var(--ink-faint);border-radius:var(--radius);padding:1.5rem;max-width:560px;margin:0 auto;display:none;animation:fadeUp .2s ease}
-@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 .form-label{font-size:12px;font-weight:600;color:var(--ink-mid);letter-spacing:.04em;text-transform:uppercase;display:block;margin-bottom:6px}
 .form-input{width:100%;padding:10px 14px;border:1.5px solid var(--ink-faint);border-radius:var(--radius-sm);font-size:15px;font-family:inherit;color:var(--ink);background:var(--cream);transition:border-color .15s;outline:none}
 .form-input:focus{border-color:var(--green);background:white}
@@ -89,19 +107,22 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .toast.info{background:var(--green-light);color:var(--green)}
 .toast.err{background:var(--red-light);color:var(--red)}
 .toast.warn{background:var(--amber-light);color:var(--amber)}
+
 /* PAGE HEADER */
 .page-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.5rem;gap:1rem;padding-bottom:1.25rem;border-bottom:1px solid var(--ink-faint)}
 .page-header-left h2{font-family:'DM Serif Display',serif;font-size:26px;letter-spacing:-.5px;line-height:1.2}
 .page-header-left p{font-size:13px;color:var(--ink-light);margin-top:3px}
-.hdr-actions{display:flex;gap:8px;align-items:center;flex-shrink:0}
+.hdr-acts{display:flex;gap:8px;align-items:center;flex-shrink:0}
 .save-ind{font-size:12px;color:var(--ink-light);display:flex;align-items:center;gap:5px}
-.save-dot{width:7px;height:7px;border-radius:50%;background:var(--ink-faint);transition:background .3s}
-.save-dot.dirty{background:var(--amber)}
-.save-dot.ok{background:var(--green)}
-.save-dot.err{background:var(--red)}
+.sdot{width:7px;height:7px;border-radius:50%;background:var(--ink-faint);transition:background .3s}
+.sdot.dirty{background:var(--amber)}.sdot.ok{background:var(--green)}.sdot.err{background:var(--red)}
 .btn-save{padding:8px 18px;background:var(--green);color:white;border:none;border-radius:var(--radius-sm);font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;transition:all .15s;white-space:nowrap}
 .btn-save:hover{background:var(--green-mid)}
 .btn-save:disabled{background:var(--ink-faint);color:var(--ink-light);cursor:not-allowed}
+.btn-back{padding:8px 14px;background:none;border:1px solid var(--ink-faint);border-radius:var(--radius-sm);font-size:13px;color:var(--ink-mid);cursor:pointer;font-family:inherit;transition:all .15s;display:none;align-items:center;gap:5px;white-space:nowrap}
+.btn-back:hover{background:var(--cream);border-color:var(--ink-light);color:var(--ink)}
+.btn-back.show{display:flex}
+
 /* STATS */
 .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.25rem}
 .stat-card{background:var(--paper);border:1px solid var(--ink-faint);border-radius:var(--radius-sm);padding:12px 16px}
@@ -110,16 +131,19 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .stat-value.hi{color:var(--green)}
 .prog-track{height:5px;background:var(--ink-faint);border-radius:99px;overflow:hidden;margin-bottom:1.5rem}
 .prog-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--green-mid));border-radius:99px;transition:width .4s ease}
+
 /* PILLS */
 .pills{display:flex;gap:8px;margin-bottom:1.25rem;flex-wrap:wrap}
 .pill{padding:5px 14px;border-radius:var(--pill);font-size:12px;font-weight:500;cursor:pointer;border:1.5px solid var(--ink-faint);font-family:inherit;transition:all .15s;background:var(--paper);color:var(--ink-mid)}
 .pill.on{border-color:currentColor}
 .pill[data-c="all"].on{background:var(--ink);color:white;border-color:var(--ink)}
-/* REVIEWER */
+
+/* REVIEWER BAR */
 .rev-bar{background:var(--paper);border:1px solid var(--ink-faint);border-radius:var(--radius-sm);padding:10px 16px;display:flex;align-items:center;gap:12px;margin-bottom:1.25rem}
 .rev-bar label{font-size:12px;color:var(--ink-light);white-space:nowrap;font-weight:500}
 .rev-bar input{flex:1;border:none;background:none;font-size:13px;color:var(--ink);font-family:inherit;outline:none}
-/* CRIT BLOCKS */
+
+/* CRITERIA BLOCKS */
 .crit-block{background:var(--paper);border:1px solid var(--ink-faint);border-radius:var(--radius);margin-bottom:10px;overflow:hidden;transition:box-shadow .2s}
 .crit-block:hover{box-shadow:var(--shadow)}
 .crit-hdr{display:flex;align-items:center;gap:12px;padding:14px 18px;cursor:pointer;user-select:none;transition:background .15s}
@@ -131,7 +155,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .crit-mini-fill{height:100%;transition:width .4s}
 .chevron{transition:transform .2s;flex-shrink:0;color:var(--ink-light)}
 .chevron.open{transform:rotate(90deg)}
-/* ITEMS */
 .sec-label{font-size:10px;font-weight:600;color:var(--ink-light);text-transform:uppercase;letter-spacing:.1em;padding:12px 18px 4px;font-family:'DM Mono',monospace}
 .check-item{display:flex;align-items:flex-start;gap:12px;padding:9px 18px;cursor:pointer;transition:background .1s;border-top:1px solid var(--ink-faint)}
 .check-item:hover{background:var(--cream)}
@@ -143,8 +166,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .it.done{color:var(--ink-light);text-decoration:line-through}
 .im{display:flex;align-items:center;gap:6px;margin-top:4px;flex-wrap:wrap}
 .tag{font-size:10px;padding:2px 7px;border-radius:var(--pill);font-weight:500;font-family:'DM Mono',monospace}
-.tip{font-size:12px;color:var(--ink-mid);margin-top:5px;padding:6px 10px;background:var(--cream);border-left:2px solid var(--ink-faint);border-radius:0 4px 4px 0;line-height:1.45}
-/* TEACHER */
+.tip-box{font-size:12px;color:var(--ink-mid);margin-top:5px;padding:6px 10px;background:var(--cream);border-left:2px solid var(--ink-faint);border-radius:0 4px 4px 0;line-height:1.45}
+
+/* TEACHER DASHBOARD */
 .dash-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.5rem}
 .table-wrap{background:var(--paper);border:1px solid var(--ink-faint);border-radius:var(--radius);overflow:hidden;margin-bottom:1.5rem}
 .table-hdr{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--ink-faint)}
@@ -169,54 +193,74 @@ table.st tbody tr:hover td{background:var(--cream)}
 .inp-group{display:flex;gap:8px}
 .inp-group .form-input{flex:1}
 .inp-group .btn-save{width:auto;padding:10px 20px}
+
 /* MISC */
 .empty{text-align:center;padding:3rem 1rem;color:var(--ink-light)}
 .empty h3{font-size:16px;color:var(--ink-mid);margin-bottom:8px}
+.empty p{font-size:13px}
 .spinner{display:inline-block;width:18px;height:18px;border:2px solid var(--ink-faint);border-top-color:var(--green);border-radius:50%;animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-@media(max-width:600px){
+
+@media(max-width:620px){
   .topnav{padding:0 1rem}
   .main{padding:1.5rem 1rem 3rem}
-  .landing-title{font-size:30px}
+  .landing-title{font-size:28px}
   .role-grid{grid-template-columns:1fr}
   .stats-row{grid-template-columns:repeat(2,1fr)}
   .dash-grid{grid-template-columns:1fr}
-  .page-header{flex-direction:column;gap:12px}
-  .hdr-actions{width:100%;justify-content:space-between}
+  .page-header{flex-direction:column;gap:10px}
+  .hdr-acts{width:100%;justify-content:space-between}
 }
 </style>
 </head>
 <body>
 
-<!-- ── SETTINGS MODAL ── -->
-<div class="modal-bg" id="modal-bg">
+<!-- ══ SETTINGS MODAL ══ -->
+<div class="modal-bg" id="modal-settings">
   <div class="modal">
     <h3>Connect to Google Sheets</h3>
-    <p>This checklist saves student progress to your Google Sheet. You only need to do this once.</p>
+    <p class="msub">Paste your deployed Apps Script Web App URL. Saved locally — only needed once.</p>
     <ol>
-      <li>Open your Google Sheet</li>
-      <li>Click <strong>Extensions &rarr; Apps Script</strong></li>
-      <li>Delete all existing code and paste the contents of <code>Code.gs</code></li>
-      <li>Press <strong>Ctrl+S</strong> to save</li>
-      <li>Click <strong>Deploy &rarr; New deployment</strong><br>
-          &nbsp;&nbsp;Type: <code>Web app</code> &nbsp;|&nbsp; Execute as: <code>Me</code> &nbsp;|&nbsp; Access: <code>Anyone</code></li>
-      <li>Click <strong>Deploy</strong>, authorise, then copy the URL</li>
-      <li>Paste it below and click <strong>Save &amp; Test</strong></li>
+      <li>Open your Google Sheet &rarr; <strong>Extensions &rarr; Apps Script</strong></li>
+      <li>Paste <code>Code.gs</code>, press <strong>Ctrl+S</strong></li>
+      <li>Click <strong>&#9654; Run</strong> &rarr; select <code>setupSheet</code></li>
+      <li><strong>Deploy &rarr; New deployment</strong> &rarr; Web app, Execute as: <code>Me</code>, Access: <code>Anyone</code></li>
+      <li>Copy the URL and paste below</li>
     </ol>
-    <div class="modal-row">
-      <input type="url" id="url-input" placeholder="https://script.google.com/macros/s/…/exec" spellcheck="false"/>
-      <button class="btn-save-url" onclick="saveUrl()">Save &amp; Test</button>
+    <div class="mrow">
+      <input type="url" id="url-inp" placeholder="https://script.google.com/macros/s/…/exec" spellcheck="false"/>
+      <button class="btn-mgo" id="btn-url-test" onclick="saveUrl()">Save &amp; Test</button>
     </div>
-    <div class="url-status" id="url-status"></div>
-    <div class="modal-close">
-      <button class="btn-text" onclick="closeModal()">Close</button>
+    <div class="mstatus" id="url-status"></div>
+    <hr class="mdivider"/>
+    <p class="msub" style="margin-bottom:.75rem"><strong>Teacher PIN</strong> &mdash; default is <code>1234</code>. Change it below (stored in your browser).</p>
+    <div class="mrow">
+      <input type="text" id="pin-chg-inp" placeholder="New PIN (min 3 chars)" maxlength="12" spellcheck="false"/>
+      <button class="btn-mgo" onclick="changeLocalPin()">Update PIN</button>
     </div>
+    <div class="mstatus" id="pin-chg-status"></div>
+    <div class="mfoot"><button class="btn-txt" onclick="closeModal('modal-settings')">Close</button></div>
   </div>
 </div>
 
-<!-- ── TOP NAV ── -->
+<!-- ══ TEACHER PIN MODAL ══ -->
+<div class="modal-bg" id="modal-pin">
+  <div class="modal">
+    <h3>Teacher access</h3>
+    <p class="msub">Enter the teacher PIN. Default is <code>1234</code>. Change it via the &#9881; gear icon.</p>
+    <div class="mrow">
+      <input type="password" id="pin-inp" class="plain" placeholder="PIN" maxlength="12"
+             onkeydown="if(event.key==='Enter')submitPin()"/>
+      <button class="btn-mgo" id="btn-pin-go" onclick="submitPin()">Unlock</button>
+    </div>
+    <div class="mstatus" id="pin-status"></div>
+    <div class="mfoot"><button class="btn-txt" onclick="closeModal('modal-pin');resetRoleCards()">Cancel</button></div>
+  </div>
+</div>
+
+<!-- ══ NAV ══ -->
 <nav class="topnav">
-  <div class="nav-brand">
+  <div class="nav-brand" onclick="goHome()" title="Go home">
     <div class="nav-dot">
       <svg viewBox="0 0 16 16" fill="none" width="16" height="16">
         <path d="M3 8h10M8 3l5 5-5 5" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
@@ -228,14 +272,13 @@ table.st tbody tr:hover td{background:var(--cream)}
     </div>
   </div>
   <div class="nav-right">
-    <!-- Settings gear — always visible -->
-    <button class="icon-btn" onclick="openModal()" title="Connect Google Sheet">
+    <button class="icon-btn" onclick="openModal('modal-settings')" title="Settings">
       <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-        <path d="M7.5 9.5a2 2 0 100-4 2 2 0 000 4z" stroke="currentColor" stroke-width="1.3"/>
+        <circle cx="7.5" cy="7.5" r="2" stroke="currentColor" stroke-width="1.3"/>
         <path d="M12.2 5.8l.6-1-1.1-1.9-1.1.4a4.5 4.5 0 00-1-.6L9.3 1.5H7l-.3 1.2a4.5 4.5 0 00-1 .6l-1.1-.4L3.5 4.8l.6 1a4.5 4.5 0 000 1.4l-.6 1 1.1 1.9 1.1-.4c.3.2.6.4 1 .6l.3 1.2h2.3l.3-1.2c.4-.2.7-.4 1-.6l1.1.4 1.1-1.9-.6-1a4.5 4.5 0 000-1.4z" stroke="currentColor" stroke-width="1.3"/>
       </svg>
     </button>
-    <div class="nav-right" id="nav-user-area" style="display:none">
+    <div class="nav-user-wrap" id="nav-user-wrap">
       <div class="nav-user">
         <div class="avatar" id="nav-avatar"></div>
         <span id="nav-name"></span>
@@ -245,11 +288,25 @@ table.st tbody tr:hover td{background:var(--cream)}
   </div>
 </nav>
 
-<!-- ── CONNECTION BANNER ── -->
-<div class="conn-banner warn" id="conn-banner">
-  <span class="conn-dot"></span>
-  <span>Not connected to Google Sheets &mdash; <a onclick="openModal()">click here to connect</a></span>
+<!-- ══ SYNC BANNER ══ -->
+<div class="sync-banner warn" id="sync-banner">
+  <span class="sync-dot"></span>
+  <span id="sync-banner-txt">Not connected to Google Sheets &mdash;
+    <a onclick="openModal('modal-settings')">click to connect</a></span>
 </div>
+
+<!-- ══ SHEET-CHANGE ALERT ══ -->
+<div class="sync-alert" id="sync-alert">
+  <strong>&#8635; Sheet updated</strong>
+  Someone edited your data in Google Sheets. Reload to see the latest?
+  <div class="sync-alert-btns">
+    <button class="sa-yes" onclick="reloadFromSheet()">Reload now</button>
+    <button class="sa-no"  onclick="dismissAlert()">Dismiss</button>
+  </div>
+</div>
+
+<!-- ══ STUDENT NAME AUTOCOMPLETE (filled by teacher list) ══ -->
+<datalist id="student-list"></datalist>
 
 <div class="main">
 
@@ -258,16 +315,16 @@ table.st tbody tr:hover td{background:var(--cream)}
     <div class="landing-hero">
       <span class="eyebrow">IB Extended Essay &middot; Chemistry</span>
       <h1 class="landing-title">Your path to<br><em>full marks</em></h1>
-      <p class="landing-sub">A criteria-by-criteria checklist that saves your progress directly to Google Sheets.</p>
+      <p class="landing-sub">A criteria-by-criteria checklist that syncs progress directly to Google Sheets.</p>
     </div>
     <div class="role-grid">
       <div class="role-card" id="card-student" onclick="selectRole('student')">
         <div class="role-icon" style="background:var(--green-light)">
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
             <rect x="4" y="3" width="14" height="16" rx="2" stroke="var(--green)" stroke-width="1.5"/>
-            <line x1="7" y1="8" x2="15" y2="8" stroke="var(--green)" stroke-width="1.5" stroke-linecap="round"/>
-            <line x1="7" y1="11.5" x2="15" y2="11.5" stroke="var(--green)" stroke-width="1.5" stroke-linecap="round"/>
-            <line x1="7" y1="15" x2="11" y2="15" stroke="var(--green)" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="7" y1="8"  x2="15" y2="8"  stroke="var(--green)" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="7" y1="12" x2="15" y2="12" stroke="var(--green)" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="7" y1="16" x2="11" y2="16" stroke="var(--green)" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
         </div>
         <h3>I'm a student</h3>
@@ -282,30 +339,38 @@ table.st tbody tr:hover td{background:var(--cream)}
           </svg>
         </div>
         <h3>I'm a teacher</h3>
-        <p>View all students on one dashboard, open individual checklists, and mark items on their behalf.</p>
+        <p>PIN-protected access to the class dashboard and all student checklists.</p>
       </div>
     </div>
+
+    <!-- Student form -->
     <div class="form-panel" id="form-student">
       <label class="form-label">Your full name</label>
-      <input class="form-input" id="inp-sname" type="text" placeholder="e.g. Priya Sharma" autocomplete="name"
-             onkeydown="if(event.key==='Enter')startStudent()"/>
-      <button class="btn-primary" onclick="startStudent()" id="btn-sgo">
+      <input class="form-input" id="inp-sname" type="text" placeholder="e.g. Priya Sharma"
+             autocomplete="name" onkeydown="if(event.key==='Enter')startStudent()"/>
+      <button class="btn-primary" id="btn-sgo" onclick="startStudent()">
         <span>Open my checklist</span>
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </button>
       <div class="toast" id="toast-s"></div>
     </div>
+
+    <!-- Teacher form — only shown after PIN verified -->
     <div class="form-panel" id="form-teacher">
       <label class="form-label">Your name (shown as reviewer)</label>
       <input class="form-input" id="inp-tname" type="text" placeholder="e.g. Ms. Patel"
              onkeydown="if(event.key==='Enter')startTeacher()"/>
-      <button class="btn-primary" onclick="startTeacher()" id="btn-tgo">
+      <button class="btn-primary" id="btn-tgo" onclick="startTeacher()">
         <span>Open teacher dashboard</span>
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </button>
       <div class="toast" id="toast-t"></div>
     </div>
-  </div>
+  </div><!-- /screen-landing -->
 
   <!-- ══ STUDENT CHECKLIST ══ -->
   <div class="screen" id="screen-student">
@@ -314,45 +379,61 @@ table.st tbody tr:hover td{background:var(--cream)}
         <h2 id="s-title">My Checklist</h2>
         <p id="s-sub">IB Chemistry Extended Essay &middot; All Criteria</p>
       </div>
-      <div class="hdr-actions">
+      <div class="hdr-acts">
+        <!-- Back to dashboard button — visible only when teacher opens a student -->
+        <button class="btn-back" id="btn-back-dash" onclick="backToDashboard()">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M9 3L5 7l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Dashboard
+        </button>
         <div class="save-ind">
-          <div class="save-dot" id="save-dot"></div>
-          <span id="save-lbl">All saved</span>
+          <div class="sdot" id="sdot"></div>
+          <span id="slbl">All saved</span>
         </div>
         <button class="btn-save" id="btn-save-top" onclick="doSave()">Save to Sheet</button>
       </div>
     </div>
+
     <div class="stats-row" id="s-stats"></div>
     <div class="prog-track"><div class="prog-fill" id="s-prog" style="width:0%"></div></div>
+
     <div class="rev-bar">
       <label>Reviewed by:</label>
-      <input type="text" id="inp-reviewer" placeholder="Teacher name (optional)"/>
+      <input type="text" id="inp-rev" placeholder="Teacher name (optional)"/>
     </div>
+
     <div class="pills" id="pills">
-      <button class="pill on" data-c="all" onclick="filterCrit('all',this)">All criteria</button>
-      <button class="pill" data-c="A" style="color:var(--green)"  onclick="filterCrit('A',this)">A &middot; Framework</button>
-      <button class="pill" data-c="B" style="color:var(--blue)"   onclick="filterCrit('B',this)">B &middot; Knowledge</button>
-      <button class="pill" data-c="C" style="color:var(--purple)" onclick="filterCrit('C',this)">C &middot; Analysis</button>
-      <button class="pill" data-c="D" style="color:var(--amber)"  onclick="filterCrit('D',this)">D &middot; Discussion</button>
-      <button class="pill" data-c="E" style="color:var(--rose)"   onclick="filterCrit('E',this)">E &middot; Reflection</button>
+      <button class="pill on" data-c="all"    onclick="filterCrit('all',this)">All criteria</button>
+      <button class="pill"    data-c="A" style="color:var(--green)"  onclick="filterCrit('A',this)">A &middot; Framework</button>
+      <button class="pill"    data-c="B" style="color:var(--blue)"   onclick="filterCrit('B',this)">B &middot; Knowledge</button>
+      <button class="pill"    data-c="C" style="color:var(--purple)" onclick="filterCrit('C',this)">C &middot; Analysis</button>
+      <button class="pill"    data-c="D" style="color:var(--amber)"  onclick="filterCrit('D',this)">D &middot; Discussion</button>
+      <button class="pill"    data-c="E" style="color:var(--rose)"   onclick="filterCrit('E',this)">E &middot; Reflection</button>
     </div>
+
     <div id="cl-body"></div>
+
     <div style="margin-top:1.5rem">
-      <button class="btn-primary" onclick="doSave()" id="btn-save-bot">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 10v3a1 1 0 001 1h10a1 1 0 001-1v-3M8 2v8M5 7l3 3 3-3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <button class="btn-primary" id="btn-save-bot" onclick="doSave()">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M2 10v3a1 1 0 001 1h10a1 1 0 001-1v-3M8 2v8M5 7l3 3 3-3"
+                stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
         Save progress to Google Sheet
       </button>
     </div>
-  </div>
+  </div><!-- /screen-student -->
 
   <!-- ══ TEACHER DASHBOARD ══ -->
   <div class="screen" id="screen-teacher">
     <div class="page-header">
       <div class="page-header-left">
         <h2>Teacher Dashboard</h2>
-        <p>Viewing as <strong id="t-name-display"></strong></p>
+        <p>Signed in as <strong id="t-name-disp"></strong>
+           &middot; <span style="color:var(--green);font-weight:500">&#128274; PIN verified</span></p>
       </div>
-      <div class="hdr-actions">
+      <div class="hdr-acts">
         <button class="btn-refresh" onclick="loadDash()">
           <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
             <path d="M11 6.5A4.5 4.5 0 112 6.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
@@ -361,7 +442,9 @@ table.st tbody tr:hover td{background:var(--cream)}
         </button>
       </div>
     </div>
+
     <div class="dash-grid" id="dash-stats"></div>
+
     <div class="table-wrap">
       <div class="table-hdr">
         <span class="table-title">Student progress</span>
@@ -369,95 +452,123 @@ table.st tbody tr:hover td{background:var(--cream)}
       </div>
       <div id="dash-table"></div>
     </div>
+
+    <!-- Search panel — only shows students who have saved data -->
     <div class="open-panel">
       <h3>Open a student's checklist</h3>
-      <p>Type any student's name to load their checklist and review or mark items on their behalf.</p>
+      <p>Only students who have saved at least once appear below.</p>
       <div class="inp-group">
-        <input class="form-input" type="text" id="inp-open" placeholder="Student name"
+        <input class="form-input" type="text" id="inp-open"
+               list="student-list" placeholder="Type or select a student name"
                onkeydown="if(event.key==='Enter')openStudent()"/>
-        <button class="btn-save" onclick="openStudent()">Open checklist</button>
+        <button class="btn-save" onclick="openStudent()">Open</button>
       </div>
       <div class="toast" id="toast-open" style="margin-top:8px"></div>
     </div>
-  </div>
+  </div><!-- /screen-teacher -->
 
 </div><!-- /main -->
 
 <script>
-// ═══════════════════════════════════════════════════════════════
-//  CONFIG — URL is stored in localStorage so you only paste once
-// ═══════════════════════════════════════════════════════════════
-var LS_KEY = 'ee_script_url';
-var scriptUrl = localStorage.getItem(LS_KEY) || '';
+// ══════════════════════════════════════════════════════════
+//  CONFIG & STATE
+// ══════════════════════════════════════════════════════════
+var LS_URL = 'ee_script_url';
+var LS_PIN = 'ee_teacher_pin';
 
-// Colour maps
+var scriptUrl   = localStorage.getItem(LS_URL) || '';
+var localPin    = localStorage.getItem(LS_PIN) || '1234';
+var pinVerified = false;
+var tPin        = '';
+
+var role        = null;   // 'student' | 'teacher'
+var sName       = '';     // current student name
+var tName       = '';     // current teacher name
+var fromTeacher = false;  // true when teacher opened a student checklist
+
+var state       = {};     // { 'A||Section||0': true|false, ... }
+var openB       = {};     // { 'A': true|false }  — section collapsed state
+var critF       = 'all';  // current filter
+
+var saveTimer   = null;
+var isDirty     = false;
+var pollTimer   = null;
+var lastTs      = 0;
+var alertDismissed = false;
+
+// Known students from the sheet (for autocomplete)
+var knownStudents = [];
+
+// ── Colour maps ──────────────────────────────────────────
 var CC = {
-  A:{c:'var(--green)',l:'var(--green-light)',b:'#1D6B4A'},
-  B:{c:'var(--blue)',l:'var(--blue-light)',b:'#1A4A7A'},
-  C:{c:'var(--purple)',l:'var(--purple-light)',b:'#4A3580'},
-  D:{c:'var(--amber)',l:'var(--amber-light)',b:'#8A5A0A'},
-  E:{c:'var(--rose)',l:'var(--rose-light)',b:'#8A2A4A'},
+  A:{c:'var(--green)',  l:'var(--green-light)',  b:'#1D6B4A'},
+  B:{c:'var(--blue)',   l:'var(--blue-light)',   b:'#1A4A7A'},
+  C:{c:'var(--purple)', l:'var(--purple-light)', b:'#4A3580'},
+  D:{c:'var(--amber)',  l:'var(--amber-light)',  b:'#8A5A0A'},
+  E:{c:'var(--rose)',   l:'var(--rose-light)',   b:'#8A2A4A'}
 };
 var TS = {
-  'common mistake':{bg:'#FDEDED',fg:'#B53030'},
-  'tip':{bg:'var(--green-light)',fg:'var(--green)'},
-  'practical':{bg:'var(--blue-light)',fg:'var(--blue)'},
-  'database':{bg:'var(--purple-light)',fg:'var(--purple)'},
-  'writing':{bg:'var(--amber-light)',fg:'var(--amber)'},
+  'common mistake':{bg:'#FDEDED',       fg:'#B53030'},
+  'tip'           :{bg:'var(--green-light)',  fg:'var(--green)'},
+  'practical'     :{bg:'var(--blue-light)',   fg:'var(--blue)'},
+  'database'      :{bg:'var(--purple-light)', fg:'var(--purple)'},
+  'writing'       :{bg:'var(--amber-light)',  fg:'var(--amber)'}
 };
 
-// ── CHECKLIST DATA ─────────────────────────────────────────────
-var CRITERIA=[
+// ══════════════════════════════════════════════════════════
+//  CHECKLIST DATA  (83 items total: A=19 B=16 C=15 D=15 E=18)
+// ══════════════════════════════════════════════════════════
+var CRITERIA = [
   {id:'A',title:'Framework for the essay',sections:[
     {name:'Research question',items:[
       {t:'Research question clearly names both the independent variable (what you change) and the dependent variable (what you measure).',tag:'writing'},
       {t:'Research question is not a yes/no question — it invites a quantified, nuanced answer.',tag:'common mistake',tip:'Avoid "Does X affect Y?" — instead write "How does X affect Y measured by Z?"'},
-      {t:'Research question does not begin with "To what extent..." — this leads to vague, unfocused essays.',tag:'common mistake'},
-      {t:'Research question specifies the range of the investigation (e.g. pH 4–8, concentrations 0.1–0.5 mol/dm\u00b3).',tag:'tip'},
+      {t:'Research question does not begin with "To what extent…" — this leads to vague, unfocused essays.',tag:'common mistake'},
+      {t:'Research question specifies the range of the investigation (e.g. pH 4–8, concentrations 0.1–0.5 mol/dm³).',tag:'tip'},
       {t:'Research question is achievable at school level — not too ambitious, not trivial.',tag:'tip'},
-      {t:'Research question involves a genuine chemical issue: a reaction, equilibrium, or measurable chemical property.',tag:'writing'},
+      {t:'Research question involves a genuine chemical issue: a reaction, equilibrium, or measurable chemical property.',tag:'writing'}
     ]},
     {name:'Structure and conventions',items:[
       {t:'Title and RQ are distinct — title is broad, RQ is precise with variables named.',tag:'writing'},
       {t:'Rationale for the chosen approach (practical, database, literature) is clearly stated in the introduction.',tag:'writing'},
-      {t:'Chemical formulas use correct subscripts throughout — H\u2082SO\u2084 not H2SO4.',tag:'common mistake',tip:'Use Unicode subscripts or proper formatting — examiners penalise inconsistent notation.'},
+      {t:'Chemical formulas use correct subscripts throughout — H₂SO₄ not H2SO4.',tag:'common mistake',tip:'Use Unicode subscripts or proper formatting — examiners penalise inconsistent notation.'},
       {t:'IUPAC names are used wherever possible instead of trivial names.',tag:'tip'},
       {t:'Technical vocabulary is consistent throughout — same term not referred to by different names.',tag:'writing'},
       {t:'All figures, tables, and images are numbered, titled, and captioned.',tag:'common mistake'},
       {t:'All graphs have labelled axes with units.',tag:'common mistake',tip:'An unlabelled axis is meaningless to an examiner — very common and easily avoidable.'},
       {t:'Appendices contain: risk assessment, safety data, equipment lists, raw data, sample calculations.',tag:'writing'},
-      {t:'Word count is within 4,000 words; appendices are not counted.',tag:'writing'},
+      {t:'Word count is within 4,000 words; appendices are not counted.',tag:'writing'}
     ]},
     {name:'Methodology rationale',items:[
       {t:'If practical: justification explains why this specific technique was chosen over alternatives.',tag:'practical'},
       {t:'If database-based: at least two independent databases are identified and rationale given.',tag:'database'},
       {t:'If literature-based: sources are acknowledged and their relevance to the RQ is explained.',tag:'database'},
-      {t:'Preliminary experiments or test runs are mentioned and placed in the appendix.',tag:'practical'},
-    ]},
+      {t:'Preliminary experiments or test runs are mentioned and placed in the appendix.',tag:'practical'}
+    ]}
   ]},
   {id:'B',title:'Knowledge and understanding',sections:[
     {name:'Chemical theory',items:[
       {t:'Background covers theory directly relevant to the RQ — not generic chemistry revision.',tag:'common mistake',tip:'Do not explain what the pH scale is if your essay is about pH. Assume the reader has IB-level knowledge.'},
       {t:'Underlying chemical principles are explained: mechanisms, equilibria, kinetics, thermodynamics, etc.',tag:'writing'},
       {t:'The theoretical framework is connected back to the RQ — clear why this background is relevant.',tag:'writing'},
-      {t:"Relevant laws or equations (Beer-Lambert, Raoult's law, VSEPR etc.) are cited and explained correctly.",tag:'writing'},
-      {t:'Sources are peer-reviewed journals, reputable databases, or textbooks — not Wikipedia.',tag:'common mistake',tip:'Wikipedia is fine for orientation but must never be cited in the essay itself.'},
+      {t:"Relevant laws or equations (Beer–Lambert, Raoult's law, VSEPR etc.) are cited and explained correctly.",tag:'writing'},
+      {t:'Sources are peer-reviewed journals, reputable databases, or textbooks — not Wikipedia.',tag:'common mistake',tip:'Wikipedia is fine for orientation but must never be cited in the essay itself.'}
     ]},
     {name:'Chemical language and notation',items:[
       {t:'"Atom", "molecule", "ion", and "compound" are never used interchangeably — each used precisely.',tag:'common mistake',tip:'Using "atoms" when you mean "ions" is one of the most penalised errors in Chemistry EEs.'},
       {t:'All balanced equations include correct state symbols: (s), (l), (g), (aq).',tag:'common mistake'},
       {t:'Reaction mechanisms are shown where applicable.',tag:'tip'},
-      {t:'SI units are used throughout: mol/dm\u00b3 not M, J not cal, nm not \u00c5.',tag:'writing'},
+      {t:'SI units are used throughout: mol/dm³ not M, J not cal, nm not Å.',tag:'writing'},
       {t:'Significant figures are consistent with the precision of measuring instruments used.',tag:'common mistake'},
       {t:'Decimal places are consistent within each data column.',tag:'writing'},
-      {t:'Uncertainty values are quoted correctly: \u00b10.05 cm\u00b3 not just \u00b10.05.',tag:'tip'},
+      {t:'Uncertainty values are quoted correctly: ±0.05 cm³ not just ±0.05.',tag:'tip'}
     ]},
     {name:'Understanding sources',items:[
-      {t:"Findings from literature or databases are explained and interpreted — not just reproduced.",tag:'common mistake',tip:"If you can't explain in your own words why a value is what it is, you haven't understood the source."},
+      {t:'Findings from literature or databases are explained and interpreted — not just reproduced.',tag:'common mistake',tip:"If you can't explain in your own words why a value is what it is, you haven't understood the source."},
       {t:'If using databases: values from different sources are compared and discrepancies discussed.',tag:'database'},
       {t:'If practical: the chemistry behind the technique is explained (e.g. why spectrophotometry works here).',tag:'practical'},
-      {t:'Computer models or simulations are understood — not used as black boxes.',tag:'tip'},
-    ]},
+      {t:'Computer models or simulations are understood — not used as black boxes.',tag:'tip'}
+    ]}
   ]},
   {id:'C',title:'Analysis and line of argument',sections:[
     {name:'Data presentation',items:[
@@ -465,22 +576,22 @@ var CRITERIA=[
       {t:'Processed data tables are separate from raw data and clearly labelled.',tag:'writing'},
       {t:'Mean values are calculated and an example calculation is shown in the body or appendix.',tag:'common mistake',tip:'Show one worked example of every type of calculation — the examiner must see you understand the process.'},
       {t:'Percentage and absolute uncertainties are calculated and propagated correctly.',tag:'tip'},
-      {t:'Large raw data sets go in the appendix; a summary table appears in the body.',tag:'writing'},
+      {t:'Large raw data sets go in the appendix; a summary table appears in the body.',tag:'writing'}
     ]},
     {name:'Graphs and visual analysis',items:[
       {t:'Correct graph type chosen: Cartesian for continuous variables, bar chart for categorical/discrete data.',tag:'common mistake',tip:'Drawing a best-fit line on a bar chart or on a graph where x-axis shows experiment numbers is a major error.'},
       {t:'Error bars are included on graphs where uncertainties apply.',tag:'tip'},
-      {t:"Trend line is appropriate for the chemical phenomenon being investigated.",tag:'common mistake',tip:"Don't force a linear trend on data that should follow an exponential or logarithmic curve."},
+      {t:'Trend line is appropriate for the chemical phenomenon being investigated.',tag:'common mistake',tip:"Don't force a linear trend on data that should follow an exponential or logarithmic curve."},
       {t:'Trend line is actively interpreted — slope, intercept, or curvature is explained chemically.',tag:'writing'},
-      {t:'Graphs are analysed, not just described ("the linear relationship suggests... because...").',tag:'common mistake'},
+      {t:'Graphs are analysed, not just described ("the linear relationship suggests… because…").',tag:'common mistake'}
     ]},
     {name:'Argument and reasoning',items:[
       {t:'Clear, sustained line of argument from introduction through results to conclusion.',tag:'writing'},
       {t:'Every piece of data is linked explicitly back to the research question.',tag:'writing'},
       {t:'Statistical analysis (SD, correlation, t-test) used where appropriate and justified.',tag:'tip',tip:'If you use statistical tools, explain why that test was chosen and what the output means chemically.'},
       {t:'Anomalous data points are identified, discussed, and either retained or excluded with justification.',tag:'common mistake'},
-      {t:'Conclusion does not introduce new information not discussed in the analysis.',tag:'writing'},
-    ]},
+      {t:'Conclusion does not introduce new information not discussed in the analysis.',tag:'writing'}
+    ]}
   ]},
   {id:'D',title:'Discussion and evaluation',sections:[
     {name:'Discussion of results',items:[
@@ -488,421 +599,659 @@ var CRITERIA=[
       {t:'Explanations for trends go beyond description — the underlying chemistry is invoked.',tag:'writing'},
       {t:'Unexpected or contradictory results are discussed honestly — not ignored.',tag:'common mistake'},
       {t:'Potential biases in the investigation are acknowledged.',tag:'tip'},
-      {t:'Practical implications or real-world relevance of findings are discussed briefly.',tag:'writing'},
+      {t:'Practical implications or real-world relevance of findings are discussed briefly.',tag:'writing'}
     ]},
     {name:'Evaluation of methodology',items:[
       {t:'Errors categorised: systematic (directional, consistent) vs. random (scatter).',tag:'common mistake',tip:'Systematic errors shift all values in one direction; random errors scatter data around the mean.'},
       {t:'For each significant error: source, likely magnitude, and directional impact are discussed.',tag:'common mistake',tip:'"Human error" is not acceptable — identify the specific procedural cause.'},
       {t:'Evaluation focuses on the most impactful errors — not an exhaustive list of minor issues.',tag:'tip'},
       {t:'Quality and reliability of sources (for database essays) are critically assessed.',tag:'database'},
-      {t:'Alternative methods or instruments are discussed, with reasons they would reduce error.',tag:'writing'},
+      {t:'Alternative methods or instruments are discussed, with reasons they would reduce error.',tag:'writing'}
     ]},
     {name:'Conclusion',items:[
       {t:'Conclusion directly and explicitly answers the research question.',tag:'common mistake',tip:'Re-read your RQ before writing the conclusion. Every sentence should connect to it.'},
       {t:'Conclusion is supported by evidence in the essay — not by assertions or new claims.',tag:'writing'},
       {t:'Degree of certainty reflects the quality of the data (strong/weak evidence acknowledged).',tag:'tip'},
-      {t:'Suggestions for further research arise from specific observations made during the investigation.',tag:'common mistake',tip:'"Further research could be done on..." is weak. Reference a specific anomaly or limitation you observed.'},
-      {t:'Further research suggestions are specific: what variable, method, and question would be investigated.',tag:'writing'},
-    ]},
+      {t:'Suggestions for further research arise from specific observations made during the investigation.',tag:'common mistake',tip:'"Further research could be done on…" is weak. Reference a specific anomaly or limitation you observed.'},
+      {t:'Further research suggestions are specific: what variable, method, and question would be investigated.',tag:'writing'}
+    ]}
   ]},
   {id:'E',title:'Reflection',sections:[
     {name:'RPPF reflections',items:[
       {t:'Three formal Reflections on Planning and Progress (RPPF) completed: initial, interim, and final.',tag:'writing'},
       {t:"Each reflection is under 500 words and written in the student's own voice.",tag:'writing'},
-      {t:'Reflections show genuine intellectual engagement — not just a log of tasks completed.',tag:'common mistake',tip:'Examiners distinguish between "I did X then Y" and genuine reflection on why something surprised or changed your thinking.'},
+      {t:'Reflections show genuine intellectual engagement — not just a log of tasks completed.',tag:'common mistake',tip:'Examiners distinguish between "I did X then Y" and genuine reflection on why something surprised or changed your thinking.'}
     ]},
     {name:'Initial reflection',items:[
       {t:'Explains why this topic and research question were chosen personally.',tag:'writing'},
       {t:'Shows what prior knowledge the student had and what gaps were identified.',tag:'tip'},
-      {t:'Anticipated challenges and a plan for addressing them are mentioned.',tag:'writing'},
+      {t:'Anticipated challenges and a plan for addressing them are mentioned.',tag:'writing'}
     ]},
     {name:'Interim reflection',items:[
       {t:'Discusses how the investigation evolved from the original plan.',tag:'writing'},
       {t:'Any pivots in methodology, RQ, or approach are explained and justified.',tag:'tip'},
       {t:'Challenges encountered are discussed with honesty — not glossed over.',tag:'common mistake',tip:'Describing a problem and how you adapted is far more impressive than pretending everything went smoothly.'},
-      {t:'Shows developing understanding of chemistry, not just project management.',tag:'writing'},
+      {t:'Shows developing understanding of chemistry, not just project management.',tag:'writing'}
     ]},
     {name:'Final reflection',items:[
       {t:'Evaluates what was learned — about chemistry, research, and academic work.',tag:'writing'},
       {t:'Connects the investigation to wider ideas in chemistry or science.',tag:'tip'},
       {t:'Addresses specifically what the student would do differently.',tag:'writing'},
-      {t:'Does not simply summarise the essay — reflects on the process of creating it.',tag:'common mistake'},
+      {t:'Does not simply summarise the essay — reflects on the process of creating it.',tag:'common mistake'}
     ]},
     {name:'Viva voce preparation',items:[
       {t:'Can explain the research question and methodology clearly in 2 minutes without notes.',tag:'tip'},
       {t:'Prepared to discuss unexpected results and how they affected the conclusion.',tag:'tip'},
       {t:'Can suggest at least two specific methodological improvements and explain why each would help.',tag:'tip'},
-      {t:'Prepared to connect findings to a broader area of chemistry.',tag:'tip'},
-    ]},
-  ]},
+      {t:'Prepared to connect findings to a broader area of chemistry.',tag:'tip'}
+    ]}
+  ]}
 ];
 
-// ── HELPERS ────────────────────────────────────────────────────
-var eh=function(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');};
-var ea=function(s){return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');};
-
-// ── STATE ──────────────────────────────────────────────────────
-var role=null, sName='', tName='';
-var state={}, openB={}, critF='all';
-var saveTimer=null, isDirty=false;
-
-function initState(){
-  state={}; openB={};
-  CRITERIA.forEach(function(c){
-    openB[c.id]=true;
-    c.sections.forEach(function(s){
-      s.items.forEach(function(item,i){ state[c.id+'||'+s.name+'||'+i]=false; });
+// ══════════════════════════════════════════════════════════
+//  STATE INIT — always from CRITERIA, never stale
+// ══════════════════════════════════════════════════════════
+function buildFreshState() {
+  var s = {}, ob = {};
+  CRITERIA.forEach(function(c) {
+    ob[c.id] = true;
+    c.sections.forEach(function(sec) {
+      sec.items.forEach(function(item, i) {
+        s[c.id + '||' + sec.name + '||' + i] = false;
+      });
     });
   });
+  return {state: s, openB: ob};
 }
-initState();
 
-// ── BANNER / MODAL ─────────────────────────────────────────────
-function updateBanner(){
-  var b=document.getElementById('conn-banner');
-  if(scriptUrl){
-    b.className='conn-banner ok';
-    b.innerHTML='<span class="conn-dot"></span><span>Connected to Google Sheets</span>';
+function resetState() {
+  var fresh = buildFreshState();
+  state = fresh.state;
+  openB = fresh.openB;
+  critF = 'all';
+}
+resetState();
+
+// ══════════════════════════════════════════════════════════
+//  HELPERS
+// ══════════════════════════════════════════════════════════
+var eh = function(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); };
+var ea = function(s){ return String(s).replace(/[&"'<>]/g, function(c){ return {'&':'&amp;','"':'&quot;',"'":'&#39;','<':'&lt;','>':'&gt;'}[c]; }); };
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(function(s){ s.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+function openModal(id)  { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+function setNav(name, r) {
+  var wrap = document.getElementById('nav-user-wrap');
+  wrap.classList.add('show');
+  var av = document.getElementById('nav-avatar');
+  var initials = name.split(' ').map(function(w){ return w[0]||''; }).join('').slice(0,2).toUpperCase();
+  av.textContent = initials;
+  av.style.background = r === 'teacher' ? 'var(--blue-light)' : 'var(--green-light)';
+  av.style.color       = r === 'teacher' ? 'var(--blue)'       : 'var(--green)';
+  document.getElementById('nav-name').textContent = name;
+}
+
+function showToast(id, msg, type) {
+  var el = document.getElementById(id);
+  el.textContent = msg; el.className = 'toast show ' + type;
+}
+
+function setSaveDot(cls, lbl) {
+  document.getElementById('sdot').className = 'sdot' + (cls ? ' ' + cls : '');
+  document.getElementById('slbl').textContent = lbl;
+}
+
+function updateBanner() {
+  var b = document.getElementById('sync-banner');
+  var t = document.getElementById('sync-banner-txt');
+  if (scriptUrl) {
+    b.className = 'sync-banner ok';
+    t.innerHTML = '&#10003; Connected to Google Sheets';
   } else {
-    b.className='conn-banner warn';
-    b.innerHTML='<span class="conn-dot"></span><span>Not connected &mdash; <a onclick="openModal()">click to connect</a></span>';
+    b.className = 'sync-banner warn';
+    t.innerHTML = 'Not connected to Google Sheets &mdash; <a onclick="openModal(\'modal-settings\')">click to connect</a>';
   }
 }
-function openModal(){
-  document.getElementById('url-input').value=scriptUrl||'';
-  document.getElementById('url-status').className='url-status';
-  document.getElementById('modal-bg').classList.add('open');
+
+// ══════════════════════════════════════════════════════════
+//  API CALL — always GET, CORS-safe
+// ══════════════════════════════════════════════════════════
+async function gasGet(url, params) {
+  var u = new URL(url);
+  Object.keys(params).forEach(function(k){ u.searchParams.set(k, params[k]); });
+  var res  = await fetch(u.toString(), {method:'GET', redirect:'follow'});
+  if (!res.ok) throw new Error('HTTP ' + res.status);
+  var text = await res.text();
+  var json;
+  try { json = JSON.parse(text); } catch(e) { throw new Error('Invalid response — check deployment settings.'); }
+  if (!json.ok) throw new Error(json.error || 'Server error');
+  return json.data;
 }
-function closeModal(){ document.getElementById('modal-bg').classList.remove('open'); }
-async function saveUrl(){
-  var v=document.getElementById('url-input').value.trim();
-  var st=document.getElementById('url-status');
-  if(!v){ st.className='url-status err'; st.textContent='Please paste a URL first.'; return; }
-  if(!v.includes('script.google.com')){
-    st.className='url-status err'; st.textContent='That does not look like a Google Apps Script URL.'; return;
-  }
-  st.className='url-status'; st.textContent='Testing connection...'; st.style.display='block';
-  try{
-    // Ping the script with a GET health-check (no action = status response)
-    var res=await gasGet(v,{});
-    localStorage.setItem(LS_KEY,v);
-    scriptUrl=v;
-    st.className='url-status ok';
-    st.textContent='\u2713 Connected! The sheet is ready. You can close this panel.';
+
+// ══════════════════════════════════════════════════════════
+//  SETTINGS MODAL
+// ══════════════════════════════════════════════════════════
+async function saveUrl() {
+  var v  = document.getElementById('url-inp').value.trim();
+  var st = document.getElementById('url-status');
+  var btn = document.getElementById('btn-url-test');
+  st.className = 'mstatus'; st.textContent = '';
+  if (!v) { st.className='mstatus err'; st.textContent='Please paste a URL.'; return; }
+  if (!v.includes('script.google.com')) { st.className='mstatus err'; st.textContent='That does not look like an Apps Script URL.'; return; }
+  st.className='mstatus ok'; st.textContent='Testing…';
+  btn.disabled = true;
+  try {
+    await gasGet(v, {});
+    localStorage.setItem(LS_URL, v);
+    scriptUrl = v;
     updateBanner();
-    setTimeout(closeModal,2000);
-  }catch(e){
-    st.className='url-status err';
-    st.textContent='Could not reach the script: '+e.message+'. Make sure you deployed as "Anyone" with access.';
+    st.className='mstatus ok'; st.textContent='\u2713 Connected! You can close this panel.';
+    setTimeout(function(){ closeModal('modal-settings'); }, 2000);
+  } catch(e) {
+    st.className='mstatus err'; st.textContent='Could not reach script: ' + e.message;
   }
+  btn.disabled = false;
 }
 
-// ── ROLE ───────────────────────────────────────────────────────
-function selectRole(r){
-  role=r;
+function changeLocalPin() {
+  var v  = document.getElementById('pin-chg-inp').value.trim();
+  var st = document.getElementById('pin-chg-status');
+  if (!v) { st.className='mstatus err'; st.textContent='Enter a new PIN.'; return; }
+  if (v.length < 3) { st.className='mstatus err'; st.textContent='PIN must be at least 3 characters.'; return; }
+  localPin = v;
+  localStorage.setItem(LS_PIN, v);
+  st.className='mstatus ok'; st.textContent='\u2713 PIN updated to "' + v + '". Keep it safe!';
+  document.getElementById('pin-chg-inp').value = '';
+}
+
+// ══════════════════════════════════════════════════════════
+//  PIN MODAL
+// ══════════════════════════════════════════════════════════
+async function submitPin() {
+  var pin = document.getElementById('pin-inp').value.trim();
+  var st  = document.getElementById('pin-status');
+  var btn = document.getElementById('btn-pin-go');
+  if (!pin) { st.className='mstatus err'; st.textContent='Enter the PIN.'; return; }
+
+  btn.disabled = true; btn.textContent = 'Checking…';
+  st.className = 'mstatus'; st.textContent = '';
+
+  // 1. Try local PIN first (works offline)
+  if (pin === localPin) {
+    pinVerified = true; tPin = pin;
+    _pinAccepted(st, btn);
+    return;
+  }
+
+  // 2. If sheet connected, also try server-side PIN
+  if (scriptUrl) {
+    try {
+      await gasGet(scriptUrl, {action:'verifypin', pin:pin});
+      pinVerified = true; tPin = pin;
+      _pinAccepted(st, btn);
+      return;
+    } catch(e) { /* wrong pin */ }
+  }
+
+  // 3. Wrong
+  st.className='mstatus err'; st.textContent='Incorrect PIN. Try again.';
+  document.getElementById('pin-inp').value = '';
+  document.getElementById('pin-inp').focus();
+  btn.disabled = false; btn.textContent = 'Unlock';
+}
+
+function _pinAccepted(st, btn) {
+  st.className='mstatus ok'; st.textContent='\u2713 PIN accepted!';
+  btn.disabled = false; btn.textContent = 'Unlock';
+  setTimeout(function(){
+    closeModal('modal-pin');
+    document.getElementById('form-teacher').style.display = 'block';
+    setTimeout(function(){ document.getElementById('inp-tname').focus(); }, 50);
+  }, 500);
+}
+
+// ══════════════════════════════════════════════════════════
+//  ROLE SELECTION
+// ══════════════════════════════════════════════════════════
+function selectRole(r) {
+  role = r;
   ['student','teacher'].forEach(function(x){
-    document.getElementById('card-'+x).classList.toggle('selected',x===r);
-    document.getElementById('form-'+x).style.display=x===r?'block':'none';
+    document.getElementById('card-'+x).classList.toggle('selected', x===r);
+    document.getElementById('form-'+x).style.display = 'none';
   });
-  setTimeout(function(){ document.getElementById(r==='student'?'inp-sname':'inp-tname').focus(); },100);
+  if (r === 'student') {
+    document.getElementById('form-student').style.display = 'block';
+    setTimeout(function(){ document.getElementById('inp-sname').focus(); }, 80);
+  } else {
+    if (!pinVerified) {
+      document.getElementById('pin-inp').value = '';
+      document.getElementById('pin-status').className = 'mstatus';
+      openModal('modal-pin');
+      setTimeout(function(){ document.getElementById('pin-inp').focus(); }, 150);
+    } else {
+      document.getElementById('form-teacher').style.display = 'block';
+      setTimeout(function(){ document.getElementById('inp-tname').focus(); }, 80);
+    }
+  }
 }
 
-// ── STUDENT START ──────────────────────────────────────────────
-async function startStudent(){
-  var name=document.getElementById('inp-sname').value.trim();
-  if(!name){toast('toast-s','Please enter your full name.','err');return;}
-  sName=name;
-  document.getElementById('btn-sgo').disabled=true;
-  initState();
-  if(scriptUrl){
-    toast('toast-s','Loading your saved progress...','info');
-    try{
-      var res=await gasGet(scriptUrl,{action:'load',student:name});
-      if(res&&res.rawData){
-        var saved=JSON.parse(res.rawData);
-        Object.keys(saved).forEach(function(k){if(k in state)state[k]=!!saved[k];});
-        if(res.reviewer)document.getElementById('inp-reviewer').value=res.reviewer;
+function resetRoleCards() {
+  role = null;
+  ['student','teacher'].forEach(function(x){
+    document.getElementById('card-'+x).classList.remove('selected');
+    document.getElementById('form-'+x).style.display = 'none';
+  });
+}
+
+// ══════════════════════════════════════════════════════════
+//  STUDENT FLOW
+// ══════════════════════════════════════════════════════════
+async function startStudent() {
+  var name = document.getElementById('inp-sname').value.trim();
+  if (!name) { showToast('toast-s','Please enter your full name.','err'); return; }
+  sName = name;
+  fromTeacher = false;
+  document.getElementById('btn-sgo').disabled = true;
+  resetState();
+
+  if (scriptUrl) {
+    showToast('toast-s','Loading your saved progress…','info');
+    try {
+      var res = await gasGet(scriptUrl, {action:'load', student:name});
+      if (res && res.rawData) {
+        applyLoadedData(res.rawData);
+        if (res.reviewer) document.getElementById('inp-rev').value = res.reviewer;
       }
-    }catch(e){toast('toast-s','Could not load progress: '+e.message,'warn');}
+      lastTs = res.ts || Date.now();
+    } catch(e) {
+      showToast('toast-s','Could not load: '+e.message,'warn');
+    }
   }
-  document.getElementById('btn-sgo').disabled=false;
-  document.getElementById('s-title').textContent=name+'\u2019s checklist';
-  document.getElementById('s-sub').textContent='IB Chemistry Extended Essay \u00b7 All Criteria';
-  setNav(name,'student');
+
+  document.getElementById('btn-sgo').disabled = false;
+  document.getElementById('s-title').textContent = name + '\u2019s Checklist';
+  document.getElementById('s-sub').textContent   = 'IB Chemistry Extended Essay \u00b7 All Criteria';
+  document.getElementById('btn-back-dash').classList.remove('show');
+  setNav(name, 'student');
   showScreen('screen-student');
   renderChecklist();
+  startPolling();
 }
 
-// ── TEACHER START ──────────────────────────────────────────────
-async function startTeacher(){
-  var name=document.getElementById('inp-tname').value.trim();
-  if(!name){toast('toast-t','Please enter your name.','err');return;}
-  tName=name;
-  document.getElementById('t-name-display').textContent=name;
-  setNav(name,'teacher');
+// ══════════════════════════════════════════════════════════
+//  TEACHER FLOW
+// ══════════════════════════════════════════════════════════
+async function startTeacher() {
+  var name = document.getElementById('inp-tname').value.trim();
+  if (!name) { showToast('toast-t','Please enter your name.','err'); return; }
+  tName = name;
+  document.getElementById('t-name-disp').textContent = name;
+  setNav(name, 'teacher');
   showScreen('screen-teacher');
   loadDash();
 }
 
-// ── OPEN STUDENT (teacher) ─────────────────────────────────────
-async function openStudent(){
-  var name=document.getElementById('inp-open').value.trim();
-  if(!name){toast('toast-open','Enter a student name.','err');return;}
-  toast('toast-open','Loading '+name+'...','info');
-  sName=name;
-  initState();
-  if(scriptUrl){
-    try{
-      var res=await gasGet(scriptUrl,{action:'load',student:name});
-      if(res&&res.rawData){
-        var saved=JSON.parse(res.rawData);
-        Object.keys(saved).forEach(function(k){if(k in state)state[k]=!!saved[k];});
-      }
-    }catch(e){}
-  }
-  document.getElementById('s-title').textContent=name+'\u2019s checklist';
-  document.getElementById('s-sub').textContent='Reviewed by '+tName+' \u00b7 Teacher view';
-  document.getElementById('inp-reviewer').value=tName;
-  showScreen('screen-student');
-  renderChecklist();
-}
+async function loadDash() {
+  var dt = document.getElementById('dash-table');
+  dt.innerHTML = '<div class="empty"><div class="spinner"></div><p style="margin-top:12px">Loading…</p></div>';
 
-// ── DASHBOARD ──────────────────────────────────────────────────
-async function loadDash(){
-  var dt=document.getElementById('dash-table');
-  dt.innerHTML='<div class="empty"><div class="spinner"></div><p style="margin-top:12px">Loading...</p></div>';
-  if(!scriptUrl){
-    dt.innerHTML='<div class="empty"><h3>Not connected</h3><p>Click the &#9881; gear icon to connect your Google Sheet.</p></div>';
-    document.getElementById('dash-stats').innerHTML='';
+  if (!scriptUrl) {
+    dt.innerHTML = '<div class="empty"><h3>Not connected</h3><p>Click the &#9881; gear icon to connect your Google Sheet.</p></div>';
+    document.getElementById('dash-stats').innerHTML = '';
     return;
   }
-  try{
-    var students=await gasGet(scriptUrl,{action:'list'});
-    renderDash(Array.isArray(students)?students:[]);
-  }catch(e){
-    dt.innerHTML='<div class="empty"><h3>Connection error</h3><p>'+eh(e.message)+'</p></div>';
+  try {
+    var students = await gasGet(scriptUrl, {action:'list', pin:tPin});
+    var arr = Array.isArray(students) ? students : [];
+    // Update the datalist for student search (only students with saved data)
+    updateStudentDatalist(arr);
+    renderDash(arr);
+  } catch(e) {
+    dt.innerHTML = '<div class="empty"><h3>Error</h3><p>' + eh(e.message) + '</p></div>';
   }
 }
 
-function renderDash(students){
-  var tot=students.length;
-  var avg=tot?Math.round(students.reduce(function(a,s){return a+(parseInt(s.pct)||0);},0)/tot):0;
-  var full=students.filter(function(s){return parseInt(s.pct)===100;}).length;
-  document.getElementById('dash-stats').innerHTML=[
-    {l:'Total students',v:tot,hi:false},
+function updateStudentDatalist(students) {
+  knownStudents = students.map(function(s){ return s.name; });
+  var dl = document.getElementById('student-list');
+  dl.innerHTML = knownStudents.map(function(n){
+    return '<option value="' + ea(n) + '">';
+  }).join('');
+}
+
+function renderDash(students) {
+  var tot = students.length;
+  var avg = tot ? Math.round(students.reduce(function(a,s){ return a + (Number(s.pct)||0); },0) / tot) : 0;
+  var full = students.filter(function(s){ return Number(s.pct)===100; }).length;
+
+  document.getElementById('dash-stats').innerHTML = [
+    {l:'Total students',  v:tot,    hi:false},
     {l:'Average progress',v:avg+'%',hi:false},
-    {l:'Fully complete',v:full,hi:full>0},
+    {l:'Fully complete',  v:full,   hi:full>0}
   ].map(function(x){
-    return '<div class="stat-card"><div class="stat-label">'+x.l+'</div><div class="stat-value'+(x.hi?' hi':'')+'">'+x.v+'</div></div>';
+    return '<div class="stat-card"><div class="stat-label">'+x.l+'</div>'
+          +'<div class="stat-value'+(x.hi?' hi':'')+'">'+ x.v+'</div></div>';
   }).join('');
 
-  if(!tot){
-    document.getElementById('dash-table').innerHTML='<div class="empty"><h3>No student data yet</h3><p>Students need to save their progress at least once.</p></div>';
+  if (!tot) {
+    document.getElementById('dash-table').innerHTML =
+      '<div class="empty"><h3>No student data yet</h3><p>Students must save at least once to appear here.</p></div>';
     return;
   }
-  var sorted=students.slice().sort(function(a,b){return(parseInt(b.pct)||0)-(parseInt(a.pct)||0);});
-  var CID=['A','B','C','D','E'];
-  var rows=sorted.map(function(s){
-    var p=parseInt(s.pct)||0;
-    var pc=p>=75?'var(--green)':p>=40?'var(--amber)':'var(--red)';
-    var crits=CID.map(function(c){
-      var v=s['crit'+c]||'0/0';
-      return '<td><span class="badge-sm" style="background:'+CC[c].l+';color:'+CC[c].b+'">'+eh(v)+'</span></td>';
+
+  var sorted = students.slice().sort(function(a,b){ return (Number(b.pct)||0)-(Number(a.pct)||0); });
+  var CID = ['A','B','C','D','E'];
+
+  var rows = sorted.map(function(s) {
+    var p  = Number(s.pct) || 0;
+    var pc = p>=75?'var(--green)':p>=40?'var(--amber)':'var(--red)';
+    var crits = CID.map(function(c){
+      return '<td><span class="badge-sm" style="background:'+CC[c].l+';color:'+CC[c].b+'">'
+            + eh(String(s['crit'+c]||'0/0'))+'</span></td>';
     }).join('');
     return '<tr class="srow" data-n="'+ea(s.name)+'">'
       +'<td style="font-weight:600">'+eh(s.name)+'</td>'
-      +'<td><div class="pct-d"><span style="font-family:\'DM Mono\',monospace;font-size:13px;font-weight:500;color:'+pc+'">'+eh(String(s.pct||'0%'))+'</span>'
-      +'<div class="mini-prog"><div class="mini-fill" style="width:'+p+'%;background:'+pc+'"></div></div></div></td>'
-      +crits
+      +'<td><div class="pct-d">'
+        +'<span style="font-family:\'DM Mono\',monospace;font-size:13px;font-weight:500;color:'+pc+'">'+p+'%</span>'
+        +'<div class="mini-prog"><div class="mini-fill" style="width:'+p+'%;background:'+pc+'"></div></div>'
+      +'</div></td>'
+      + crits
       +'<td style="color:var(--ink-light);font-size:12px;white-space:nowrap">'+eh(String(s.lastUpdated||'\u2014'))+'</td>'
       +'<td style="color:var(--ink-light);font-size:12px">'+eh(String(s.reviewer||'\u2014'))+'</td>'
-      +'<td><button class="btn-open" data-n="'+ea(s.name)+'">Open &rarr;</button></td>'
+      +'<td><button class="btn-open" data-n="'+ea(s.name)+'" onclick="event.stopPropagation();openStudentByName(this.dataset.n)">Open &rarr;</button></td>'
       +'</tr>';
   }).join('');
-  document.getElementById('dash-table').innerHTML=
-    '<div style="overflow-x:auto"><table class="st"><thead><tr>'
-    +'<th>Student</th><th>Overall</th>'
-    +CID.map(function(c){return '<th style="color:'+CC[c].b+'">Crit '+c+'</th>';}).join('')
-    +'<th>Last saved</th><th>Reviewer</th><th></th>'
-    +'</tr></thead><tbody>'+rows+'</tbody></table></div>';
 
+  document.getElementById('dash-table').innerHTML =
+    '<div style="overflow-x:auto"><table class="st"><thead><tr>'
+    + '<th>Student</th><th>Overall</th>'
+    + CID.map(function(c){ return '<th style="color:'+CC[c].b+'">Crit '+c+'</th>'; }).join('')
+    + '<th>Last saved</th><th>Reviewer</th><th></th>'
+    + '</tr></thead><tbody>'+rows+'</tbody></table></div>';
+
+  // Row click
   document.querySelectorAll('#dash-table .srow').forEach(function(r){
-    r.addEventListener('click',function(){
-      document.getElementById('inp-open').value=r.getAttribute('data-n');
-      openStudent();
-    });
-  });
-  document.querySelectorAll('#dash-table .btn-open').forEach(function(b){
-    b.addEventListener('click',function(e){
-      e.stopPropagation();
-      document.getElementById('inp-open').value=b.getAttribute('data-n');
-      openStudent();
-    });
+    r.addEventListener('click', function(){ openStudentByName(r.dataset.n); });
   });
 }
 
-// ── CHECKLIST ──────────────────────────────────────────────────
-function filterCrit(c,btn){
-  critF=c;
-  document.querySelectorAll('.pill').forEach(function(b){b.classList.remove('on');});
+async function openStudent() {
+  var name = document.getElementById('inp-open').value.trim();
+  if (!name) { showToast('toast-open','Enter a student name.','err'); return; }
+  // Only allow names that have saved data
+  var match = knownStudents.find(function(n){ return n.toLowerCase()===name.toLowerCase(); });
+  if (!match && knownStudents.length>0) {
+    showToast('toast-open', name+' has no saved data yet.', 'warn'); return;
+  }
+  openStudentByName(match || name);
+}
+
+async function openStudentByName(name) {
+  showToast('toast-open','Loading '+name+'…','info');
+  sName = name;
+  fromTeacher = true;
+  resetState();
+
+  if (scriptUrl) {
+    try {
+      var res = await gasGet(scriptUrl, {action:'load', student:name});
+      if (res && res.rawData) applyLoadedData(res.rawData);
+      lastTs = res.ts || Date.now();
+    } catch(e) {}
+  }
+
+  document.getElementById('s-title').textContent = name + '\u2019s Checklist';
+  document.getElementById('s-sub').textContent   = 'Reviewed by ' + tName + ' \u00b7 Teacher view';
+  document.getElementById('inp-rev').value        = tName;
+  document.getElementById('btn-back-dash').classList.add('show');
+  showScreen('screen-student');
+  renderChecklist();
+  startPolling();
+}
+
+function backToDashboard() {
+  stopPolling();
+  isDirty = false;
+  document.getElementById('inp-open').value = '';
+  showScreen('screen-teacher');
+  loadDash();
+}
+
+// ══════════════════════════════════════════════════════════
+//  APPLY LOADED DATA — only update keys that exist in state
+// ══════════════════════════════════════════════════════════
+function applyLoadedData(rawJSON) {
+  try {
+    var saved = JSON.parse(rawJSON);
+    // Only copy keys that exist in current state (prevents stale keys polluting counts)
+    Object.keys(saved).forEach(function(k){
+      if (Object.prototype.hasOwnProperty.call(state, k)) {
+        state[k] = saved[k] === true;
+      }
+    });
+  } catch(e) { /* corrupt JSON — ignore, start fresh */ }
+}
+
+// ══════════════════════════════════════════════════════════
+//  CHECKLIST RENDER
+// ══════════════════════════════════════════════════════════
+function filterCrit(c, btn) {
+  critF = c;
+  document.querySelectorAll('.pill').forEach(function(b){ b.classList.remove('on'); });
   btn.classList.add('on');
   renderChecklist();
 }
-function toggleB(id){openB[id]=!openB[id];renderChecklist();}
-function tick(key){state[key]=!state[key];renderChecklist();markDirty();}
+function toggleSection(id) { openB[id] = !openB[id]; renderChecklist(); }
+function tick(key) { state[key] = !state[key]; renderChecklist(); markDirty(); }
 
-function markDirty(){
-  isDirty=true;
-  setSaveDot('dirty','Unsaved changes');
-  clearTimeout(saveTimer);
-  if(scriptUrl) saveTimer=setTimeout(doSave,8000);
-}
+function renderChecklist() {
+  // ── Totals are ALWAYS computed from CRITERIA keys in state ──
+  var TOTAL_ITEMS = 83; // matches CRITERIA count
+  var stateKeys   = Object.keys(state); // always 83 after resetState()
+  var done = stateKeys.filter(function(k){ return state[k] === true; }).length;
+  // Cap pct strictly 0–100 regardless of any edge case
+  var pct = Math.min(100, Math.max(0, TOTAL_ITEMS > 0 ? Math.round(done / TOTAL_ITEMS * 100) : 0));
 
-function renderChecklist(){
-  var keys=Object.keys(state);
-  var tot=keys.length;
-  var done=keys.filter(function(k){return state[k];}).length;
-  var pct=tot?Math.round(done/tot*100):0;
-  document.getElementById('s-prog').style.width=pct+'%';
+  document.getElementById('s-prog').style.width = pct + '%';
 
-  var cmK=keys.filter(function(k){
-    var p=k.split('||');
-    var cr=CRITERIA.find(function(x){return x.id===p[0];});
-    if(!cr)return false;
-    var sc=cr.sections.find(function(x){return x.name===p[1];});
-    return sc&&sc.items[+p[2]]&&sc.items[+p[2]].tag==='common mistake';
-  });
-  var cmD=cmK.filter(function(k){return state[k];}).length;
+  // Common mistakes cleared count
+  var cmKeys  = stateKeys.filter(function(k){ return _getItem(k) && _getItem(k).tag === 'common mistake'; });
+  var cmDone  = cmKeys.filter(function(k){ return state[k]; }).length;
 
-  document.getElementById('s-stats').innerHTML=[
-    {l:'Completed',v:done+'/'+tot,hi:done===tot},
-    {l:'Progress',v:pct+'%',hi:pct===100},
-    {l:'Remaining',v:tot-done,hi:false},
-    {l:'Mistakes cleared',v:cmD+'/'+cmK.length,hi:cmD===cmK.length},
+  document.getElementById('s-stats').innerHTML = [
+    {l:'Completed',      v:done+'/'+TOTAL_ITEMS, hi:done===TOTAL_ITEMS},
+    {l:'Progress',       v:pct+'%',               hi:pct===100},
+    {l:'Remaining',      v:TOTAL_ITEMS-done,       hi:false},
+    {l:'Mistakes fixed', v:cmDone+'/'+cmKeys.length, hi:cmDone===cmKeys.length && cmKeys.length>0}
   ].map(function(x){
-    return '<div class="stat-card"><div class="stat-label">'+x.l+'</div><div class="stat-value'+(x.hi?' hi':'')+'">'+x.v+'</div></div>';
+    return '<div class="stat-card"><div class="stat-label">'+x.l+'</div>'
+          +'<div class="stat-value'+(x.hi?' hi':'')+'">'+x.v+'</div></div>';
   }).join('');
 
-  var body=document.getElementById('cl-body');
-  body.innerHTML=CRITERIA.map(function(c){
-    if(critF!=='all'&&critF!==c.id)return'';
-    var col=CC[c.id];
-    var ck=keys.filter(function(k){return k.indexOf(c.id+'||')===0;});
-    var cd=ck.filter(function(k){return state[k];}).length;
-    var cp=ck.length?Math.round(cd/ck.length*100):0;
-    var isOpen=openB[c.id];
-    var secs='';
-    if(isOpen){
-      c.sections.forEach(function(s){
-        var items='';
-        s.items.forEach(function(item,i){
-          var key=c.id+'||'+s.name+'||'+i;
-          var chk=state[key];
-          var ts=TS[item.tag]||{};
-          var tagH=item.tag?'<span class="tag" style="background:'+ts.bg+';color:'+ts.fg+'">'+eh(item.tag)+'</span>':'';
-          var tipH=item.tip?'<div class="tip">'+eh(item.tip)+'</div>':'';
-          items+='<div class="check-item" data-key="'+ea(key)+'">'
-            +'<div class="cb'+(chk?' on':'')+'"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L4 7L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>'
-            +'<div class="ic"><div class="it'+(chk?' done':'')+'">'+eh(item.t)+'</div><div class="im">'+tagH+'</div>'+tipH+'</div>'
+  // ── Criteria blocks ──
+  var body = document.getElementById('cl-body');
+  body.innerHTML = CRITERIA.map(function(c){
+    if (critF !== 'all' && critF !== c.id) return '';
+    var col = CC[c.id];
+    var ck  = stateKeys.filter(function(k){ return k.indexOf(c.id+'||')===0; });
+    var cd  = ck.filter(function(k){ return state[k]; }).length;
+    var cp  = ck.length ? Math.round(cd/ck.length*100) : 0;
+    var isO = openB[c.id];
+
+    var inner = '';
+    if (isO) {
+      c.sections.forEach(function(sec){
+        var items = '';
+        sec.items.forEach(function(item, i){
+          var key = c.id+'||'+sec.name+'||'+i;
+          var chk = state[key] === true;
+          var ts  = TS[item.tag] || {};
+          var tagH = item.tag
+            ? '<span class="tag" style="background:'+ts.bg+';color:'+ts.fg+'">'+eh(item.tag)+'</span>'
+            : '';
+          var tipH = item.tip
+            ? '<div class="tip-box">'+eh(item.tip)+'</div>'
+            : '';
+          items +=
+            '<div class="check-item" data-key="'+ea(key)+'">'
+            +'<div class="cb'+(chk?' on':'')+'"><svg width="10" height="8" viewBox="0 0 10 8" fill="none">'
+            +'<path d="M1 4L4 7L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>'
+            +'</svg></div>'
+            +'<div class="ic">'
+              +'<div class="it'+(chk?' done':'')+'">'+eh(item.t)+'</div>'
+              +'<div class="im">'+tagH+'</div>'
+              + tipH
+            +'</div>'
             +'</div>';
         });
-        secs+='<div class="sec-label">'+eh(s.name)+'</div>'+items;
+        inner += '<div class="sec-label">'+eh(sec.name)+'</div>' + items;
       });
     }
+
     return '<div class="crit-block">'
       +'<div class="crit-hdr" data-crit="'+c.id+'">'
         +'<span class="crit-badge" style="background:'+col.l+';color:'+col.b+'">Criterion '+c.id+'</span>'
         +'<span class="crit-name">'+eh(c.title)+'</span>'
         +'<span class="crit-count">'+cd+'/'+ck.length+'</span>'
-        +'<svg class="chevron'+(isOpen?' open':'')+'" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+        +'<svg class="chevron'+(isO?' open':'')+'" width="14" height="14" viewBox="0 0 14 14" fill="none">'
+        +'<path d="M5 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>'
+        +'</svg>'
       +'</div>'
       +'<div class="crit-mini"><div class="crit-mini-fill" style="width:'+cp+'%;background:'+col.c+'"></div></div>'
-      +(isOpen?'<div>'+secs+'</div>':'')
-    +'</div>';
+      +(isO?'<div>'+inner+'</div>':'')
+      +'</div>';
   }).join('');
 
   body.querySelectorAll('.check-item').forEach(function(el){
-    el.addEventListener('click',function(){tick(el.getAttribute('data-key'));});
+    el.addEventListener('click', function(){ tick(el.dataset.key); });
   });
   body.querySelectorAll('.crit-hdr').forEach(function(el){
-    el.addEventListener('click',function(){toggleB(el.getAttribute('data-crit'));});
+    el.addEventListener('click', function(){ toggleSection(el.dataset.crit); });
   });
 }
 
-// ── SAVE ───────────────────────────────────────────────────────
-async function doSave(){
+// Lookup a checklist item from a state key
+function _getItem(key) {
+  var parts = key.split('||');
+  if (parts.length < 3) return null;
+  var crit = CRITERIA.find(function(c){ return c.id === parts[0]; });
+  if (!crit) return null;
+  var sec = crit.sections.find(function(s){ return s.name === parts[1]; });
+  if (!sec) return null;
+  return sec.items[parseInt(parts[2])] || null;
+}
+
+// ══════════════════════════════════════════════════════════
+//  SAVE
+// ══════════════════════════════════════════════════════════
+function markDirty() {
+  isDirty = true;
+  setSaveDot('dirty','Unsaved changes');
   clearTimeout(saveTimer);
-  if(!scriptUrl){
-    setSaveDot('err','Not connected — open \u2699 to link Google Sheet');
-    return;
-  }
-  var bt=document.getElementById('btn-save-top');
-  var bb=document.getElementById('btn-save-bot');
-  bt.disabled=true; bt.textContent='Saving...'; bb.disabled=true;
-  var reviewer=document.getElementById('inp-reviewer').value.trim();
-  try{
-    // Use GET — Apps Script GET works without CORS preflight
-    await gasGet(scriptUrl,{action:'save',student:sName,data:JSON.stringify(state),reviewer:reviewer});
-    isDirty=false;
+  if (scriptUrl) saveTimer = setTimeout(doSave, 8000); // auto-save after 8s
+}
+
+async function doSave() {
+  clearTimeout(saveTimer);
+  if (!scriptUrl) { setSaveDot('err','Not connected \u2014 click \u2699 to link sheet'); return; }
+
+  var bt = document.getElementById('btn-save-top');
+  var bb = document.getElementById('btn-save-bot');
+  bt.disabled=true; bt.textContent='Saving…';
+  bb.disabled=true;
+
+  var reviewer = document.getElementById('inp-rev').value.trim();
+  try {
+    var res = await gasGet(scriptUrl, {
+      action:'save', student:sName,
+      data:JSON.stringify(state), reviewer:reviewer
+    });
+    isDirty = false;
+    lastTs  = res.ts || Date.now();
     setSaveDot('ok','Saved \u2713');
-    setTimeout(function(){if(!isDirty)setSaveDot('','All saved');},3000);
-  }catch(e){
+    setTimeout(function(){ if(!isDirty) setSaveDot('','All saved'); }, 3000);
+  } catch(e) {
     setSaveDot('err','Save failed: '+e.message);
   }
-  bt.disabled=false; bt.textContent='Save to Sheet'; bb.disabled=false;
+  bt.disabled=false; bt.textContent='Save to Sheet';
+  bb.disabled=false;
 }
 
-// ── GAS FETCH (always GET — no CORS preflight needed) ──────────
-// Apps Script deployed as "Anyone" accepts GET without CORS issues.
-// We use fetch with redirect:'follow' so the 302 from GAS is handled.
-// JSON state is URL-encoded as a parameter (GAS limit ~8KB per param
-// which is enough for ~100 boolean flags).
-async function gasGet(url, params){
-  var u=new URL(url);
-  Object.keys(params).forEach(function(k){ u.searchParams.set(k, params[k]); });
-  var res=await fetch(u.toString(),{method:'GET',redirect:'follow'});
-  if(!res.ok) throw new Error('HTTP '+res.status);
-  var text=await res.text();
-  var json;
-  try{ json=JSON.parse(text); }
-  catch(e){ throw new Error('Bad response (not JSON). Check deployment settings.'); }
-  if(!json.ok) throw new Error(json.error||'Server error');
-  return json.data;
+// ══════════════════════════════════════════════════════════
+//  POLLING — detect sheet edits by others
+// ══════════════════════════════════════════════════════════
+function startPolling() {
+  stopPolling();
+  if (!scriptUrl || !sName) return;
+  alertDismissed = false;
+  pollTimer = setInterval(pollForChanges, 30000);
+}
+function stopPolling() {
+  if (pollTimer) { clearInterval(pollTimer); pollTimer=null; }
+}
+async function pollForChanges() {
+  if (!scriptUrl || !sName || isDirty) return;
+  try {
+    var res = await gasGet(scriptUrl, {action:'checkchange', student:sName, since:lastTs});
+    if (res && res.changed && !alertDismissed) {
+      lastTs = res.ts || lastTs;
+      document.getElementById('sync-alert').classList.add('show');
+    }
+  } catch(e) { /* silent */ }
+}
+function dismissAlert() {
+  alertDismissed = true;
+  document.getElementById('sync-alert').classList.remove('show');
+}
+async function reloadFromSheet() {
+  document.getElementById('sync-alert').classList.remove('show');
+  if (!scriptUrl || !sName) return;
+  try {
+    var res = await gasGet(scriptUrl, {action:'load', student:sName});
+    if (res && res.rawData) {
+      resetState();
+      applyLoadedData(res.rawData);
+      if (res.reviewer) document.getElementById('inp-rev').value = res.reviewer;
+    }
+    lastTs  = res.ts || Date.now();
+    isDirty = false;
+    setSaveDot('ok','Reloaded');
+    setTimeout(function(){ setSaveDot('','All saved'); }, 3000);
+    renderChecklist();
+  } catch(e) {
+    setSaveDot('err','Reload failed: '+e.message);
+  }
 }
 
-// ── UI ─────────────────────────────────────────────────────────
-function setSaveDot(cls,lbl){
-  document.getElementById('save-dot').className='save-dot'+(cls?' '+cls:'');
-  document.getElementById('save-lbl').textContent=lbl;
-}
-function showScreen(id){
-  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});
-  document.getElementById(id).classList.add('active');
-  window.scrollTo(0,0);
-}
-function setNav(name,r){
-  document.getElementById('nav-user-area').style.display='flex';
-  var av=document.getElementById('nav-avatar');
-  av.textContent=name.split(' ').map(function(w){return w[0]||'';}).join('').slice(0,2).toUpperCase();
-  av.style.background=r==='teacher'?'var(--blue-light)':'var(--green-light)';
-  av.style.color=r==='teacher'?'var(--blue)':'var(--green)';
-  document.getElementById('nav-name').textContent=name;
-}
-function goHome(){
-  initState(); sName=''; tName=''; role=null;
-  document.getElementById('nav-user-area').style.display='none';
-  ['card-student','card-teacher'].forEach(function(id){document.getElementById(id).classList.remove('selected');});
-  ['form-student','form-teacher'].forEach(function(id){document.getElementById(id).style.display='none';});
-  ['inp-sname','inp-tname','inp-reviewer'].forEach(function(id){document.getElementById(id).value='';});
+// ══════════════════════════════════════════════════════════
+//  HOME / SIGN OUT
+// ══════════════════════════════════════════════════════════
+function goHome() {
+  stopPolling();
+  resetState();
+  sName=''; tName=''; role=null; isDirty=false; fromTeacher=false;
+  document.getElementById('nav-user-wrap').classList.remove('show');
+  document.getElementById('sync-alert').classList.remove('show');
+  document.getElementById('inp-open').value  = '';
+  document.getElementById('inp-rev').value   = '';
+  document.getElementById('inp-sname').value = '';
+  document.getElementById('inp-tname').value = '';
+  resetRoleCards();
+  pinVerified = false; tPin = '';
   showScreen('screen-landing');
 }
-function toast(id,msg,type){
-  var el=document.getElementById(id);
-  el.textContent=msg; el.className='toast show '+type;
-}
 
-// ── INIT ───────────────────────────────────────────────────────
+// ══════════════════════════════════════════════════════════
+//  INIT
+// ══════════════════════════════════════════════════════════
 updateBanner();
+if (scriptUrl) document.getElementById('url-inp').value = scriptUrl;
 </script>
 </body>
 </html>
